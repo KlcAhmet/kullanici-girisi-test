@@ -6,6 +6,8 @@ import {
 
 /* Components */
 import { Home, Navigation } from "./component map/ComponentMap"
+/* CSS */
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   return (
