@@ -5,13 +5,13 @@ import {
 } from "react-router-dom";
 
 /* Components */
-import { Home } from "./component map/ComponentMap"
+import { Home, Navigation } from "./component map/ComponentMap"
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <Header />
+        <Navigation />
         <Switch>
           <Route path="/" component={Home} />
         </Switch>
