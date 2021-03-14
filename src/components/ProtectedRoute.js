@@ -1,9 +1,7 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import { UserLoggin, GuestLoggin } from "../component map/ComponentMap"
+/* import { UserLoggin, GuestLoggin } from "../component map/ComponentMap" */
 
 
-const ProtectedRoute = ({ component: Component, user, ...rest }) => {
+const ProtectedRoute = (props) => {
     return (
         <p>test</p>
     )
