@@ -1,10 +1,10 @@
 class Auth {
     constructor() {
-        this.name = "null"
-        this.Email = "null"
-        this.Subject = "null"
-        this.Message = "null"
-        this.Token = "null"
+        this.name = null
+        this.Email = null
+        this.Subject = null
+        this.Message = null
+        this.Token = null
     }
 
     setToken(param) {
