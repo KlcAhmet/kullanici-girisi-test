@@ -41,16 +41,18 @@ const Home = (() => {
             })
     }, [])
     return (
-        <Table striped bordered hover variant="dark">
-            <thead>
-                <tr>
-                    {tableHead}
-                </tr>
-            </thead>
-            <tbody>
-                {projectList}
-            </tbody>
-        </Table>
+        <div>
+            <Table striped bordered hover responsive variant="dark">
+                <thead>
+                    <tr>
+                        {tableHead}
+                    </tr>
+                </thead>
+                <tbody>
+                    {projectList}
+                </tbody>
+            </Table>
+        </div>
 
     )
 })
