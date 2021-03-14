@@ -1,17 +1,16 @@
 import axios from "axios"
 import { Form, Button } from 'react-bootstrap'
 import Access from "./Access"
-
+import Auth from "./Auth"
 
 const Login = props => {
 
 
     const onSubmit = event => {
+        event.preventDefault();
         var formdata = new FormData()
         formdata.append('Email', event.target[0].value)
         formdata.append('Password', event.target[1].value)
-        event.preventDefault();
-
         axios({
             method: "post",
             url: `${Access}/Account/Login`,
@@ -21,7 +20,8 @@ const Login = props => {
             .then(function (data) {
                 //handle success
                 if (data.data.IsSuccess) {
-                    /* setToken(data.data.Result.AccessToken) */
+                    Auth.setToken(data.data.Result.AccessToken)
+                    props.history.push("/contact")
                 }
                 else {
                     alert("Mail yada şifre yanlış!")
