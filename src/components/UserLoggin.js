@@ -3,7 +3,7 @@ import Access from "./Access"
 import Auth from "./Auth"
 import { Form, Button } from 'react-bootstrap'
 const UserLoggin = event => {
-    console.log(`authorization ${Auth.getToken()}`);
+    /*  console.log(`authorization ${Auth.getToken()}`); */
     const onSubmit = event => {
         event.preventDefault();
         var formdata = new FormData()
@@ -16,8 +16,8 @@ const UserLoggin = event => {
             url: `${Access}/ContactUs/List`,
             headers: {
                 "Content-Type": "multipart/form-data",
+                authorization: `Bearer ${Auth.getToken()}`
             },
-            authorization: `authorization ${Auth.getToken()}`
         })
             .then(function (data) {
                 //handle success
