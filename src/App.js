@@ -7,8 +7,11 @@ import { Home, Login, Navigation, ProtectedRoute } from "./component map/Compone
 /* CSS */
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-function App() {
+import store from "./store/index"
 
+function App() {
+  /* const store = const dispatch = useDispatch(function)() */
+  console.log(store.getState());
   return (
     <div className="App">
       <Router>
