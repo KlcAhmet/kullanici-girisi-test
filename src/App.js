@@ -17,6 +17,7 @@ function App() {
 
   dispatch(increment("deneme"))
   console.log(store.getState());
+  console.log(store.getState().counter);
 
   return (
     <div className="App">
