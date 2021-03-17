@@ -1,37 +1,37 @@
-import axios from "axios"
+/* import axios from "axios" */
 import { Form, Button } from 'react-bootstrap'
-import Access from "./Access"
-import Auth from "./Auth"
+/* import Access from "./Access" */
+/* import Auth from "./Auth" */
 
 const Login = props => {
 
 
     const onSubmit = event => {
         event.preventDefault();
-        var formdata = new FormData()
-        formdata.append('Email', event.target[0].value)
-        formdata.append('Password', event.target[1].value)
-        axios({
-            method: "post",
-            url: `${Access}/Account/Login`,
-            data: formdata,
-            headers: { "Content-Type": "multipart/form-data" }
-        })
-            .then(function (data) {
-                //handle success
-                if (data.data.IsSuccess) {
-                    Auth.setToken(data.data.Result.AccessToken)
-                    props.history.push("/contact")
-                }
-                else {
-                    alert("Mail yada şifre yanlış!")
-                }
-
-            })
-            .catch(function (error) {
-                console.log("Hata")
-                console.log(error)
-            })
+        /*         var formdata = new FormData()
+                formdata.append('Email', event.target[0].value)
+                formdata.append('Password', event.target[1].value)
+                axios({
+                    method: "post",
+                    url: `${Access}/Account/Login`,
+                    data: formdata,
+                    headers: { "Content-Type": "multipart/form-data" }
+                })
+                    .then(function (data) {
+                        //handle success
+                        if (data.data.IsSuccess) {
+                            Auth.setToken(data.data.Result.AccessToken)
+                            props.history.push("/contact")
+                        }
+                        else {
+                            alert("Mail yada şifre yanlış!")
+                        }
+        
+                    })
+                    .catch(function (error) {
+                        console.log("Hata")
+                        console.log(error)
+                    }) */
     }
 
     return (
