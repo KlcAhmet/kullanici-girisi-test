@@ -1,13 +1,15 @@
+import axios from "axios"
+import Access from "../components/Access"
 import { createStore, combineReducers } from 'redux'
 
 //Store -> global useState
 
 
 // actions
-export const increment = (e) => {
+export const login = (e) => {
     return {
-        type: 'increment',
-        text: e
+        type: 'login',
+        userObject: e
     }
 }
 
@@ -17,38 +19,77 @@ export const decrement = () => {
     }
 }
 
-// reducer
-const counterReducer = (state = "undefined", actions) => {
-    switch (actions.type) {
-        case "increment":
-            return state = actions.text
-        case "decrement":
-            return state = "aa"
-        default:
-            return state
+
+/* "Result": {
+    "AccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJQcm9qZWN0SUQiOiI0ZGIxNTViMC1mNzIwLTQwM2QtYjNiZC04MDg2YmNhNmMzM2MiLCJVc2VySW5mbyI6IntcIlVzZXJJRFwiOlwiYjIxMTVlYTAtMWIzNi00ZWFhLWE2MzUtNjk1ZmJkZTExMGI5XCIsXCJFbWFpbFwiOlwic2VtaWhjZXRpbjM0QGdtYWlsLmNvbVwiLFwiRmlyc3ROYW1lXCI6XCJzZW1paFwiLFwiTGFzdE5hbWVcIjpcIsOnZXRpblwiLFwiUGhvbmVOdW1iZXJcIjpcIjU1NTU1XCIsXCJCaXJ0aERhdGVcIjpcIjEyLjAxLjIwMjFcIixcIkdlbmRlclwiOlwiZXJrZWtcIixcIkFkZHJlc3NcIjpcImhhbWl0YWJhdCBtaC4gZGVtZXQgc2suIG5vOjM3XCIsXCJJc0NvbmZpcm1cIjp0cnVlfSIsIm5iZiI6MTYxNjAwNDAwMCwiZXhwIjoxNjQ3NTQwMDAwLCJpc3MiOiJAZmludGVjaHlhemlsaW0iLCJhdWQiOiJAZmludGVjaHlhemlsaW0ifQ.4JMy2JnhAaSnEM_lp2OZgZOl9vKb9MbQFjfhQyVLpH8",
+    "UserInfo": {
+      "UserID": "b2115ea0-1b36-4eaa-a635-695fbde110b9",
+      "Email": "semihcetin34@gmail.com",
+      "FirstName": "semih",
+      "LastName": "çetin",
+      "PhoneNumber": "55555",
+      "BirthDate": "12.01.2021",
+      "Gender": "erkek",
+      "Address": "hamitabat mh. demet sk. no:37",
+      "IsConfirm": true
     }
+  } */
+
+// reducer
+const setUserReducer = (state = [], actions) => {
+    if (actions.type === "login") {
+        console.log(actions);
+        /*        var formdata = new FormData()
+               formdata.append('Email', event.target[0].value)
+               formdata.append('Password', event.target[1].value) */
+        axios({
+            method: "post",
+            url: `${Access}/Account/Login`,
+            /*   data: formdata, */
+            headers: { "Content-Type": "multipart/form-data" }
+        })
+            .then(function (data) {
+                //handle success
+                if (data.data.IsSuccess) {
+                    /*  props.history.push("/contact") */
+                }
+                else {
+                    alert("Mail yada şifre yanlış!")
+                }
+
+            })
+            .catch(function (error) {
+                console.log("Hata")
+                console.log(error)
+            })
+        return "setUser doğru"
+    }
+    else {
+        return "setUser tanımsız"
+    }
+
+
+
+
+    /*  switch (actions.type) {
+         case "login":
+             return state = actions.text
+         case "decrement":
+             return state = "aa"
+         default:
+             return state
+     } */
 }
 
-const loggedReducer = (state = false, actions) => {
-    switch (actions.type) {
-        case 'SIGN_IN':
-            return !state
-        default:
-            return state
-    }
-}
 
 
 //Displat it in the console
 /* store.subscribe(() => { store.getState() }) */
 
-// dispatch
-/* store.dispatch(increment())
-store.dispatch(decrement()) */
 
 export const allReducers = combineReducers({
-    counter: counterReducer,
-    isLogged: loggedReducer
+    User: setUserReducer/* , */
+    /* isLogged: loggedReducer */
 })
 
 /* redux extension için */
