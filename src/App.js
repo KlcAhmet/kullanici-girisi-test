@@ -1,17 +1,23 @@
 import {
   BrowserRouter as Router, Switch, Route
 } from "react-router-dom";
-
+/* Redux */
+import { useDispatch } from "react-redux"
+import { increment } from "./store/index"
+import store from "./store/index"
 /* Components */
 import { Home, Login, Navigation, ProtectedRoute } from "./component map/ComponentMap"
 /* CSS */
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import store from "./store/index"
-
 function App() {
-  /* const store = const dispatch = useDispatch(function)() */
+
+  /* console.log(store.getState()); */
+  const dispatch = useDispatch();
+
+  dispatch(increment("deneme"))
   console.log(store.getState());
+
   return (
     <div className="App">
       <Router>

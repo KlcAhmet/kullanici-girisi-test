@@ -4,9 +4,10 @@ import { createStore, combineReducers } from 'redux'
 
 
 // actions
-export const increment = () => {
+export const increment = (e) => {
     return {
-        type: 'increment'
+        type: 'increment',
+        text: e
     }
 }
 
@@ -17,12 +18,12 @@ export const decrement = () => {
 }
 
 // reducer
-const counterReducer = (state = 0, actions) => {
+const counterReducer = (state = "undefined", actions) => {
     switch (actions.type) {
         case "increment":
-            return state + 1
+            return state = actions.text
         case "decrement":
-            return state - 1
+            return state = "aa"
         default:
             return state
     }
