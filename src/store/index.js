@@ -38,7 +38,6 @@ const loggedReducer = (state = false, actions) => {
 }
 
 
-
 //Displat it in the console
 /* store.subscribe(() => { store.getState() }) */
 
