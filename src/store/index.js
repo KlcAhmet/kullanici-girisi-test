@@ -36,21 +36,26 @@ export const decrement = () => {
   } */
 
 // reducer
-const setUserReducer = (state = [], actions) => {
+const setUserReducer = (state = ["undefined"], actions) => {
     if (actions.type === "login") {
-        console.log(actions);
-        /*        var formdata = new FormData()
-               formdata.append('Email', event.target[0].value)
-               formdata.append('Password', event.target[1].value) */
+
+        const axiosParameters = (e) => {
+
+        }
+        /* console.log(actions); */
+        var formdata = new FormData()
+        formdata.append('Email', actions.userObject.target[0].value)
+        formdata.append('Password', actions.userObject.target[1].value)
         axios({
             method: "post",
             url: `${Access}/Account/Login`,
-            /*   data: formdata, */
+            data: formdata,
             headers: { "Content-Type": "multipart/form-data" }
         })
             .then(function (data) {
                 //handle success
                 if (data.data.IsSuccess) {
+                    return "state = data.data.Result"
                     /*  props.history.push("/contact") */
                 }
                 else {
@@ -62,23 +67,11 @@ const setUserReducer = (state = [], actions) => {
                 console.log("Hata")
                 console.log(error)
             })
-        return "setUser doğru"
+        return state = 
     }
     else {
-        return "setUser tanımsız"
+        return state = "setUserReducer başrısız"
     }
-
-
-
-
-    /*  switch (actions.type) {
-         case "login":
-             return state = actions.text
-         case "decrement":
-             return state = "aa"
-         default:
-             return state
-     } */
 }
 
 
