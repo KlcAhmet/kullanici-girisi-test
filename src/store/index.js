@@ -1,6 +1,7 @@
 import axios from "axios"
 import Access from "../components/Access"
-import { createStore, combineReducers } from 'redux'
+import thunk from 'redux-thunk';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 
 //Store -> global useState
 
@@ -56,6 +57,6 @@ export const allReducers = combineReducers({
 
 /* redux extension için */
 /* window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() */
-let store = createStore(allReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+let store = createStore(allReducers, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
 
 export default store
