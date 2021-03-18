@@ -7,7 +7,6 @@ import { createStore, combineReducers } from 'redux'
 
 // actions
 export const login = (e) => {
-    let user = []
     const axiosParameters = {
         headers: { "Content-Type": "multipart/form-data" }
     }
@@ -15,18 +14,15 @@ export const login = (e) => {
     var formdata = new FormData()
     formdata.append('Email', e.target[0].value)
     formdata.append('Password', e.target[1].value)
+    async function getData() {
+        const result = await axios.post(`${Access}/Account/Login`, formdata, axiosParameters)
+        return await result.data
+    }
 
-    axios.post(`${Access}/Account/Login`, formdata, axiosParameters)
-        .then(function (response) {
-            user.push(response.data)
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
+    const temp = getData()
     return {
         type: 'login',
-        actions: e,
-        user
+        temp
     }
 }
 
@@ -37,12 +33,20 @@ export const decrement = () => {
 }
 
 // reducer
-const setUserReducer = (state = [], actions = []) => {
-    if (actions.type === "login"/*  && actions.user[0].IsSuccess */) {
-        console.log(actions.user.values());
+const setUserReducer = (state = [], actions) => {
+    if (actions.type === "login") {
+        console.log(actions.temp);
+
+
+        /*  .then(function (response) {
+             console.log(response);
+         })
+         .catch(function (error) {
+             console.log(error);
+         }) */
         return {
             ...state,
-            User: actions.user
+            User: actions
         }
     }
     else return state
