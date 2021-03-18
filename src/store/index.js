@@ -7,8 +7,8 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 
 
 // actions
-export const login = (e) => {
-    return function action(dispatch) {
+export function login(e) {
+    return async (dispatch) => {
         const axiosParameters = {
             headers: { "Content-Type": "multipart/form-data" }
         }
@@ -17,9 +17,8 @@ export const login = (e) => {
         formdata.append('Email', e.target[0].value)
         formdata.append('Password', e.target[1].value)
 
-        const result = axios.post(`${Access}/Account/Login`, formdata, axiosParameters)
-
-        dispatch({
+        const result = await axios.post(`${Access}/Account/Login`, formdata, axiosParameters)
+        return await dispatch({
             type: 'login',
             result
         })
@@ -34,14 +33,16 @@ export const decrement = () => {
 
 // reducer
 const setUserReducer = (state = [], actions) => {
-    if (actions.type === "login") {
-
+    if (actions.type === "login" && actions.result.data.IsSuccess === true) {
+        console.log(actions.result.data.IsSuccess);
         return {
             ...state,
             User: actions
         }
     }
-    else return state
+    else {
+        return state
+    }
 }
 
 
