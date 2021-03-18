@@ -6,8 +6,8 @@ import { createStore, combineReducers } from 'redux'
 
 
 // actions
-export const login = async (e) => {
-    const result = () => async (dispatch) => {
+export const login = (e) => {
+    return function action(dispatch) {
         const axiosParameters = {
             headers: { "Content-Type": "multipart/form-data" }
         }
@@ -16,14 +16,12 @@ export const login = async (e) => {
         formdata.append('Email', e.target[0].value)
         formdata.append('Password', e.target[1].value)
 
-        const result = await axios.post(`${Access}/Account/Login`, formdata, axiosParameters)
+        const result = axios.post(`${Access}/Account/Login`, formdata, axiosParameters)
 
-        return result
-
-    }
-    return {
-        type: 'login',
-        result
+        dispatch({
+            type: 'login',
+            result
+        })
     }
 }
 
