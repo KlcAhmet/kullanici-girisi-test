@@ -2,40 +2,23 @@
 import { Form, Button } from 'react-bootstrap'
 /* import Access from "./Access" */
 /* import Auth from "./Auth" */
+/* Redux */
+import { useDispatch } from "react-redux"
+import { login } from "../store"
 
 const Login = props => {
+    const dispatch = useDispatch();
 
-
-    const onSubmit = event => {
-        event.preventDefault();
-        /*         var formdata = new FormData()
-                formdata.append('Email', event.target[0].value)
-                formdata.append('Password', event.target[1].value)
-                axios({
-                    method: "post",
-                    url: `${Access}/Account/Login`,
-                    data: formdata,
-                    headers: { "Content-Type": "multipart/form-data" }
-                })
-                    .then(function (data) {
-                        //handle success
-                        if (data.data.IsSuccess) {
-                            Auth.setToken(data.data.Result.AccessToken)
-                            props.history.push("/contact")
-                        }
-                        else {
-                            alert("Mail yada şifre yanlış!")
-                        }
-        
-                    })
-                    .catch(function (error) {
-                        console.log("Hata")
-                        console.log(error)
-                    }) */
-    }
+    /*     const onSubmit = event => {
+            event.preventDefault();
+    
+        } */
 
     return (
-        <Form onSubmit={onSubmit}>
+        <Form onSubmit={(e) => {
+            e.preventDefault()
+            dispatch(login(e))
+        }}>
             <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control type="email" placeholder="Enter email" defaultValue="semihcetin34@gmail.com" />
@@ -46,7 +29,7 @@ const Login = props => {
                 <Form.Control type="password" placeholder="Password" defaultValue="1" />
             </Form.Group>
             <Button variant="primary" type="submit">Gönder</Button>
-        </Form>
+        </Form >
     )
 }
 

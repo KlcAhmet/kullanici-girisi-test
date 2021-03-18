@@ -3,7 +3,7 @@
 /* import Auth from "./Auth" */
 import { Form, Button } from 'react-bootstrap'
 const UserLoggin = event => {
-    /*  console.log(`authorization ${Auth.getToken()}`); */
+
     const onSubmit = event => {
         event.preventDefault();
         /*         var formdata = new FormData()
