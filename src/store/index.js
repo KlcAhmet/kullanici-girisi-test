@@ -34,10 +34,11 @@ export const decrement = () => {
 // reducer
 const setUserReducer = (state = [], actions) => {
     if (actions.type === "login" && actions.result.data.IsSuccess === true) {
-        console.log(actions.result.data.IsSuccess);
+        console.log(actions.result.data.Result);
         return {
             ...state,
-            User: actions
+            User: actions.result.data.Result
+
         }
     }
     else {
