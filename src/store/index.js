@@ -25,21 +25,11 @@ export function login(e) {
     }
 }
 
-export const decrement = () => {
-    return {
-        type: 'decrement'
-    }
-}
-
 // reducer
 const setUserReducer = (state = [], actions) => {
     if (actions.type === "login" && actions.result.data.IsSuccess === true) {
         console.log(actions.result.data.Result);
-        return {
-            ...state,
-            User: actions.result.data.Result
-
-        }
+        return actions.result.data.Result
     }
     else {
         return state
@@ -48,7 +38,7 @@ const setUserReducer = (state = [], actions) => {
 
 
 
-//Displat it in the console
+//Display it in the console
 /* store.subscribe(() => { store.getState() }) */
 
 
