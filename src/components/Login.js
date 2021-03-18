@@ -9,15 +9,12 @@ import { login } from "../store"
 const Login = props => {
     const dispatch = useDispatch();
 
-    /*     const onSubmit = event => {
-            event.preventDefault();
-    
-        } */
-
     return (
         <Form onSubmit={(e) => {
-            e.preventDefault()
+            e.preventDefault();
             dispatch(login(e))
+            console.log(dispatch(login(e)));
+            /* props.history.push("/contact") */
         }}>
             <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
