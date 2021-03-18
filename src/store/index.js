@@ -6,23 +6,24 @@ import { createStore, combineReducers } from 'redux'
 
 
 // actions
-export const login = (e) => {
-    const axiosParameters = {
-        headers: { "Content-Type": "multipart/form-data" }
-    }
+export const login = async (e) => {
+    const result = () => async (dispatch) => {
+        const axiosParameters = {
+            headers: { "Content-Type": "multipart/form-data" }
+        }
 
-    var formdata = new FormData()
-    formdata.append('Email', e.target[0].value)
-    formdata.append('Password', e.target[1].value)
-    async function getData() {
+        var formdata = new FormData()
+        formdata.append('Email', e.target[0].value)
+        formdata.append('Password', e.target[1].value)
+
         const result = await axios.post(`${Access}/Account/Login`, formdata, axiosParameters)
-        return await result.data
-    }
 
-    const temp = getData()
+        return result
+
+    }
     return {
         type: 'login',
-        temp
+        result
     }
 }
 
@@ -35,15 +36,7 @@ export const decrement = () => {
 // reducer
 const setUserReducer = (state = [], actions) => {
     if (actions.type === "login") {
-        console.log(actions.temp);
 
-
-        /*  .then(function (response) {
-             console.log(response);
-         })
-         .catch(function (error) {
-             console.log(error);
-         }) */
         return {
             ...state,
             User: actions
