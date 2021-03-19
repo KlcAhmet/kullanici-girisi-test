@@ -5,10 +5,15 @@ import { Form, Button } from 'react-bootstrap'
 /* Redux */
 import store from "../store/index"
 import { login } from "../store"
+/* localStorage */
+import { saveState } from '../localStorage'
 
 const Login = props => {
     function loginRun() {
         if (store.getState().User.IsSuccess) {
+            saveState({
+                User: store.getState().User
+            })
             props.history.push("/contact")
             return
         }
@@ -19,7 +24,7 @@ const Login = props => {
         else {
             setTimeout(function () {
                 loginRun()
-            }, 200);
+            }, 500);
         }
     }
 

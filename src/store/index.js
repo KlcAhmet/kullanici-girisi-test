@@ -2,8 +2,8 @@ import axios from "axios"
 import Access from "../components/Access"
 import thunk from 'redux-thunk';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
-
-//Store -> global useState
+/* localStorage */
+import { loadState } from '../localStorage'
 
 
 // actions
@@ -77,7 +77,7 @@ const getContactListReducer = (state = [], actions) => {
 
 //Display it in the console
 /* store.subscribe(() => { store.getState() }) */
-
+const persistedState = loadState();
 
 export const allReducers = combineReducers({
     User: setUserReducer,
@@ -86,6 +86,6 @@ export const allReducers = combineReducers({
 
 /* redux extension için */
 /* window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() */
-let store = createStore(allReducers, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
+let store = createStore(allReducers, { ...persistedState }, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
 
 export default store
