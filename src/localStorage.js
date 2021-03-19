@@ -13,7 +13,7 @@ export const loadState = () => {
 export const saveState = (state) => {
     try {
         const serialState = JSON.stringify(state);
-        localStorage.setItem('appState', serialState);
+        localStorage.setItem(Object.keys(state), serialState);
     } catch (err) {
         console.log(err);
     }
