@@ -1,3 +1,5 @@
+import store from "./store/index"
+
 export const loadState = () => {
     try {
         const serialState = localStorage.getItem('appState');
@@ -13,7 +15,7 @@ export const loadState = () => {
 export const saveState = (state) => {
     try {
         const serialState = JSON.stringify(state);
-        localStorage.setItem(Object.keys(state), serialState);
+        localStorage.setItem('appState', serialState);
     } catch (err) {
         console.log(err);
     }
