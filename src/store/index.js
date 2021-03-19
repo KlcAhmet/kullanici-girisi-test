@@ -28,14 +28,19 @@ export function login(e) {
 // reducer
 const setUserReducer = (state = [], actions) => {
     if (actions.type === "login" && actions.result.data.IsSuccess === true) {
-        console.log(actions.result.data.Result);
-        return actions.result.data.Result
+
+        return actions.result.data
+    }
+    else if (actions.type === "login" && actions.result.data.IsSuccess === false) {
+        return actions.result.data
     }
     else {
         return state
     }
 }
-
+/* "IsSuccess": false,
+"ResultType": "WARNING",
+"Result": "Kullanıcı adı veya parola yanlış" */
 
 
 //Display it in the console
