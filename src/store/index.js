@@ -24,6 +24,28 @@ export function login(e) {
         })
     }
 }
+export function getContactList(e) {
+    return async (dispatch) => {
+        const axiosParameters = {
+            headers: {
+                "Content-Type": "multipart/form-data",
+                authorization: `Bearer ${store.getState().User.Result.AccessToken}`
+            }
+        }
+
+        var formdata = new FormData()
+        formdata.append('FullName', e.target[0].value)
+        formdata.append('Email', e.target[1].value)
+        formdata.append('Subject', e.target[2].value)
+        formdata.append('Message', e.target[3].value)
+
+        const result = await axios.post(`${Access}/ContactUs/List`, formdata, axiosParameters)
+        return await dispatch({
+            type: 'getContactList',
+            result
+        })
+    }
+}
 
 // reducer
 const setUserReducer = (state = [], actions) => {
@@ -38,9 +60,19 @@ const setUserReducer = (state = [], actions) => {
         return state
     }
 }
-/* "IsSuccess": false,
-"ResultType": "WARNING",
-"Result": "Kullanıcı adı veya parola yanlış" */
+/* const setUserReducer = (state = [], actions) => {
+    if (actions.type === "login" && actions.result.data.IsSuccess === true) {
+
+        return actions.result.data
+    }
+    else if (actions.type === "login" && actions.result.data.IsSuccess === false) {
+        return actions.result.data
+    }
+    else {
+        return state
+    }
+} */
+
 
 
 //Display it in the console
