@@ -1,5 +1,3 @@
-import store from "./store/index"
-
 export const loadState = () => {
     try {
         const serialState = localStorage.getItem('appState');
