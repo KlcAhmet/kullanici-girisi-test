@@ -1,7 +1,7 @@
 import axios from "axios"
 import Access from "../components/Access"
 import thunk from 'redux-thunk';
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension';
 /* localStorage */
 import { loadState } from '../localStorage'
@@ -49,7 +49,7 @@ export function getContactList(e) {
 }
 
 // reducer
-const setUserReducer = (state = [], actions) => {
+const setUserReducer = (state = [false], actions) => {
     if (actions.type === "login" && actions.result.data.IsSuccess === true) {
         return actions.result.data
     }
