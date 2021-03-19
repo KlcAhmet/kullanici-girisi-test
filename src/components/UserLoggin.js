@@ -2,36 +2,17 @@
 /* import Access from "./Access" */
 /* import Auth from "./Auth" */
 import { Form, Button } from 'react-bootstrap'
+/* Redux */
+import store from "../store/index"
+import { getContactList } from "../store"
+
 const UserLoggin = event => {
 
-    const onSubmit = event => {
-        event.preventDefault();
-        /*         var formdata = new FormData()
-                formdata.append('FullName', event.target[0].value)
-                formdata.append('Email', event.target[1].value)
-                formdata.append('Subject', event.target[2].value)
-                formdata.append('Message', event.target[3].value)
-                axios({
-                    method: "post",
-                    url: `${Access}/ContactUs/List`,
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                        authorization: `Bearer ${Auth.getToken()}`
-                    },
-                })
-                    .then(function (data) {
-                        //handle success
-                        console.dir(data);
-        
-        
-                    })
-                    .catch(function (error) {
-                        console.log("Hata")
-                        console.log(error)
-                    }) */
-    }
     return (
-        <Form onSubmit={onSubmit}>
+        <Form onSubmit={(e) => {
+            e.preventDefault();
+            store.dispatch(getContactList(e))
+        }}>
             <Form.Group controlId="formBasicFullName">
                 <Form.Label>FullName</Form.Label>
                 <Form.Control type="text" placeholder="FullName" defaultValue="Test Name" />

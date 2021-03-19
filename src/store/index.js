@@ -50,7 +50,6 @@ export function getContactList(e) {
 // reducer
 const setUserReducer = (state = [], actions) => {
     if (actions.type === "login" && actions.result.data.IsSuccess === true) {
-
         return actions.result.data
     }
     else if (actions.type === "login" && actions.result.data.IsSuccess === false) {
@@ -62,12 +61,12 @@ const setUserReducer = (state = [], actions) => {
 }
 
 const getContactListReducer = (state = [], actions) => {
-    if (actions.type === "getContactList" && actions.result.data.IsSuccess === true) {
-
-        return actions.result.data
+    /* "Result": "Oturum süresi doldu tekrardan giriş yapınız."*/
+    if (actions.type === "getContactList" && actions.result.data.IsSuccess === 1) {
+        return actions.result.data.Result
     }
-    else if (actions.type === "getContactList" && actions.result.data.IsSuccess === false) {
-        return actions.result.data
+    else if (actions.type === "getContactList") {
+        return actions.Result
     }
     else {
         return state
@@ -81,8 +80,8 @@ const getContactListReducer = (state = [], actions) => {
 
 
 export const allReducers = combineReducers({
-    User: setUserReducer/* , */
-    /* isLogged: loggedReducer */
+    User: setUserReducer,
+    ContactList: getContactListReducer
 })
 
 /* redux extension için */
