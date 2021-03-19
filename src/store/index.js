@@ -60,18 +60,19 @@ const setUserReducer = (state = [], actions) => {
         return state
     }
 }
-/* const setUserReducer = (state = [], actions) => {
-    if (actions.type === "login" && actions.result.data.IsSuccess === true) {
+
+const getContactListReducer = (state = [], actions) => {
+    if (actions.type === "getContactList" && actions.result.data.IsSuccess === true) {
 
         return actions.result.data
     }
-    else if (actions.type === "login" && actions.result.data.IsSuccess === false) {
+    else if (actions.type === "getContactList" && actions.result.data.IsSuccess === false) {
         return actions.result.data
     }
     else {
         return state
     }
-} */
+}
 
 
 
