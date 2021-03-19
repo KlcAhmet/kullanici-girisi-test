@@ -2,6 +2,7 @@ import axios from "axios"
 import Access from "../components/Access"
 import thunk from 'redux-thunk';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension';
 /* localStorage */
 import { loadState } from '../localStorage'
 
@@ -60,7 +61,7 @@ const setUserReducer = (state = [], actions) => {
     }
 }
 
-const getContactListReducer = (state = [], actions) => {
+const getContactListReducer = (state = [false], actions) => {
     /* "Result": "Oturum süresi doldu tekrardan giriş yapınız."*/
     if (actions.type === "getContactList" && actions.result.data.IsSuccess === 1) {
         return actions.result.data.Result
@@ -86,6 +87,6 @@ export const allReducers = combineReducers({
 
 /* redux extension için */
 /* window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() */
-let store = createStore(allReducers, { ...persistedState }, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
+let store = createStore(allReducers, { ...persistedState }, composeWithDevTools(applyMiddleware(thunk)))
 
 export default store
