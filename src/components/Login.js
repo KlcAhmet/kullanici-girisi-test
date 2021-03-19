@@ -3,18 +3,31 @@ import { Form, Button } from 'react-bootstrap'
 /* import Access from "./Access" */
 /* import Auth from "./Auth" */
 /* Redux */
-import { useDispatch } from "react-redux"
+import store from "../store/index"
 import { login } from "../store"
 
 const Login = props => {
-    const dispatch = useDispatch();
+    function loginRun() {
+        if (store.getState().User.IsSuccess) {
+            props.history.push("/contact")
+            return
+        }
+        else if (store.getState().User.IsSuccess === false) {
+            alert(store.getState().User.Result)
+            return
+        }
+        else {
+            setTimeout(function () {
+                loginRun()
+            }, 200);
+        }
+    }
 
     return (
         <Form onSubmit={(e) => {
             e.preventDefault();
-            dispatch(login(e))
-            console.log(dispatch(login(e)));
-            /* props.history.push("/contact") */
+            store.dispatch(login(e))
+            loginRun()
         }}>
             <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
