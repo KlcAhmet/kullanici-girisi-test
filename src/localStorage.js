@@ -1,6 +1,6 @@
 export const loadState = () => {
     try {
-        const serialState = localStorage.getItem('appState');
+        const serialState = localStorage.getItem();
         if (serialState === null) {
             return undefined;
         }
@@ -12,8 +12,18 @@ export const loadState = () => {
 
 export const saveState = (state) => {
     try {
-        const serialState = JSON.stringify(state);
-        localStorage.setItem('appState', serialState);
+        console.dir(state);
+
+        if (localStorage.getItem(Object.keys(state)) === null) {
+            const serialState = JSON.stringify(state);
+            localStorage.setItem(Object.keys(state), serialState);
+        }
+        else {
+            if (Object.keys(state)[0] === 'User') {
+                const serialState = JSON.stringify(state);
+                localStorage.setItem(Object.keys(state), serialState);
+            }
+        }
     } catch (err) {
         console.log(err);
     }
