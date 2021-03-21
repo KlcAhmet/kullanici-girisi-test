@@ -1,9 +1,15 @@
-export const loadState = () => {
+export const loadState = (initialState) => {
     try {
-        const serialStates = []
-        Object.keys(localStorage).forEach(element => {
-            const serialState = JSON.parse(localStorage.getItem(element))
-            serialStates[element] = serialState[element]
+        const serialStates = {}
+        Object.keys(initialState).forEach(element => {
+            if (localStorage.getItem(element)) {
+                const serialState = JSON.parse(localStorage.getItem(element))
+                serialStates[element] = serialState[element]
+            }
+            else {
+                console.log(initialState[element]);
+                serialStates[element] = initialState[element]
+            }
         })
         return serialStates
     } catch (err) {
