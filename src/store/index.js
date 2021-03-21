@@ -81,6 +81,21 @@ const getContactListReducer = (state = [], actions) => {
 }
 
 
+const setToken = (state = [], actions) => {
+    /* "Result": "Oturum süresi doldu tekrardan giriş yapınız."*/
+    if (actions.type === "login" && actions.result.status === 200) {
+        return actions.result.data.Result.AccessToken
+    }
+    else if (actions.type === "login") {
+        return actions.Result
+    }
+    else {
+        return state
+    }
+}
+
+
+
 
 //Display it in the console
 /* store.subscribe(() => { store.getState() }) */
@@ -88,7 +103,8 @@ const persistedState = loadState();
 
 export const allReducers = combineReducers({
     User: setUserReducer,
-    ContactList: getContactListReducer
+    ContactList: getContactListReducer,
+    Token: setToken
 })
 
 /* redux extension için */
