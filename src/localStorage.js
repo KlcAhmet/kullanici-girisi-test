@@ -1,11 +1,11 @@
 export const loadState = () => {
     try {
-        console.log(Object.keys(localStorage));
-        const serialState = localStorage.getItem();
-        if (serialState === null) {
-            return undefined;
-        }
-        return JSON.parse(serialState);
+        const serialStates = []
+        Object.keys(localStorage).forEach(element => {
+            const serialState = JSON.parse(localStorage.getItem(element))
+            serialStates[element] = serialState[element]
+        })
+        return serialStates
     } catch (err) {
         return undefined;
     }
