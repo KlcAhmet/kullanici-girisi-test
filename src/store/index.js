@@ -49,21 +49,27 @@ export function getContactList(e) {
 }
 
 // reducer
-const setUserReducer = (state = [false], actions) => {
-    if (actions.type === "login" && actions.result.data.IsSuccess === true) {
+const setUserReducer = (state = [], actions) => {
+
+    if (actions.type === "login" && actions.result.status === 200) {
         return actions.result.data
     }
-    else if (actions.type === "login" && actions.result.data.IsSuccess === false) {
-        return actions.result.data
+    else if (actions.type === "login" && actions.result.status === 400) {
+        //Bad Request
+        return state
+    }
+    else if (actions.type === "login" && actions.result.status === 500) {
+        //Internal Server Error
+        return state
     }
     else {
         return state
     }
 }
 
-const getContactListReducer = (state = [false], actions) => {
+const getContactListReducer = (state = [], actions) => {
     /* "Result": "Oturum süresi doldu tekrardan giriş yapınız."*/
-    if (actions.type === "getContactList" && actions.result.data.IsSuccess === 1) {
+    if (actions.type === "getContactList" && actions.result.status === 200) {
         return actions.result.data.Result
     }
     else if (actions.type === "getContactList") {
