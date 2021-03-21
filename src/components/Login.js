@@ -9,6 +9,7 @@ import { login } from "../store"
 import { saveState } from '../localStorage'
 
 const Login = props => {
+    /*    console.log(store.getState()); */
     function loginRun() {
         if (store.getState().User.IsSuccess) {
             saveState({

@@ -6,13 +6,17 @@ import { Form, Button, Table } from 'react-bootstrap'
 /* Redux */
 import store from "../store/index"
 import { getContactList } from "../store"
+import { saveState } from '../localStorage'
 
 const UserLoggin = props => {
     const [tableHead, setTableHead] = useState([])
     const [list, setList] = useState([])
 
     function contactRun() {
-        if (store.getState().ContactList[0] !== false) {
+        if (store.getState().ContactList.length) { //DEĞİŞECEK store.getState().ContactList[0] 
+            saveState({
+                ContactList: store.getState().ContactList
+            })
             const tableHeader = []
             const tableBody = []
             Object.keys(store.getState().ContactList[0]).forEach((element, i) => tableHeader.push(<th key={i}>{element}</th>))
