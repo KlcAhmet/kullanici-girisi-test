@@ -15,6 +15,9 @@ const Login = props => {
             saveState({
                 User: store.getState().User
             })
+            saveState({
+                Token: store.getState().Token
+            })
             props.history.push("/contact")
             return
         }
