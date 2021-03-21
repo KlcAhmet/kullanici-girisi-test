@@ -81,7 +81,7 @@ const getContactListReducer = (state = [], actions) => {
 }
 
 
-const setToken = (state = [], actions) => {
+const setTokenReducer = (state = [], actions) => {
     /* "Result": "Oturum süresi doldu tekrardan giriş yapınız."*/
     if (actions.type === "login" && actions.result.status === 200) {
         return actions.result.data.Result.AccessToken
@@ -93,18 +93,36 @@ const setToken = (state = [], actions) => {
         return state
     }
 }
+const testReducer = (state = [], actions) => {
+    /* "Result": "Oturum süresi doldu tekrardan giriş yapınız."*/
+    if (actions.type === "test" && actions.result.status === 200) {
+        return actions
+    }
+    else if (actions.type === "test") {
+        return actions
+    }
+    else {
+        return state
+    }
+}
 
-
+const initialState = {
+    User: {},
+    Token: null,
+    ContactList: {},
+    Test: 'asdsad'
+}
 
 
 //Display it in the console
 /* store.subscribe(() => { store.getState() }) */
-const persistedState = loadState();
+const persistedState = loadState(initialState);
 
 export const allReducers = combineReducers({
     User: setUserReducer,
     ContactList: getContactListReducer,
-    Token: setToken
+    Token: setTokenReducer,
+    Test: testReducer
 })
 
 /* redux extension için */
