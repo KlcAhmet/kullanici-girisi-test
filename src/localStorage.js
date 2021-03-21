@@ -7,7 +7,6 @@ export const loadState = (initialState) => {
                 serialStates[element] = serialState[element]
             }
             else {
-                console.log(initialState[element]);
                 serialStates[element] = initialState[element]
             }
         })
