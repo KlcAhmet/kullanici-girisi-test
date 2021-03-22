@@ -30,7 +30,7 @@ export function getContactList(e) {
         const axiosParameters = {
             headers: {
                 "Content-Type": "multipart/form-data",
-                authorization: `Bearer ${store.getState().User.Result.AccessToken}`
+                authorization: `Bearer ${Object.values(JSON.parse(localStorage.getItem('Token')))}`
             }
         }
 
