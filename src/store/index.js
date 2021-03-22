@@ -5,6 +5,8 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension';
 /* localStorage */
 import { loadState } from '../localStorage'
+/* axios interceptors */
+import './axiosInterceptors'
 
 
 // actions
@@ -19,6 +21,14 @@ export function login(e) {
         formdata.append('Password', e.target[1].value)
 
         const result = await axios.post(`${Access}/Account/Login`, formdata, axiosParameters)
+        if (result.status === 200 && result.data.IsSuccess === false) {
+            return await dispatch({
+                type: 'login',
+                result: {
+                    success: false
+                }
+            })
+        }
         return await dispatch({
             type: 'login',
             result
@@ -51,6 +61,8 @@ export function getContactList(e) {
 // reducer
 const setUserReducer = (state = [], actions) => {
 
+    if (actions.type === "login" && actions.result.success === false) return state
+
     if (actions.type === "login" && actions.result.status === 200) {
         return actions.result.data
     }
@@ -82,6 +94,9 @@ const getContactListReducer = (state = [], actions) => {
 
 
 const setTokenReducer = (state = [], actions) => {
+
+    if (actions.type === "login" && actions.result.success === false) return state
+
     /* "Result": "Oturum süresi doldu tekrardan giriş yapınız."*/
     if (actions.type === "login" && actions.result.status === 200) {
         return actions.result.data.Result.AccessToken

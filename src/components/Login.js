@@ -11,7 +11,7 @@ import { saveState } from '../localStorage'
 const Login = props => {
     /*    console.log(store.getState()); */
     function loginRun() {
-        if (store.getState().Token) {
+        if (localStorage.getItem('Token')) {
             saveState({
                 User: store.getState().User
             })
