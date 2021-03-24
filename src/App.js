@@ -12,13 +12,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
 
-  /* console.log(store.getState()); */
-  /* const dispatch = useDispatch(); */
-
-  /*  dispatch(increment("deneme"))
-   console.log(store.getState());
-   console.log(store.getState().counter); */
-
   return (
     <div className="App">
       <Router>
