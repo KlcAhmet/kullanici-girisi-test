@@ -4,7 +4,7 @@ import store from "../store/index"
 
 const ProtectedRoute = (props) => {
     try {
-        if (localStorage.getItem('Token') !== null) {
+        if (localStorage.getItem('Token')) {
             return (
                 <UserLoggin />
             )
@@ -16,11 +16,6 @@ const ProtectedRoute = (props) => {
         }
     } catch (error) {
 
-    }
-    finally {
-        return (
-            <GuestLoggin />
-        )
     }
 
 }
