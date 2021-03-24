@@ -13,7 +13,7 @@ const UserLoggin = props => {
     const [list, setList] = useState([])
 
     function contactRun() {
-        if (localStorage.getItem('Token') && localStorage.getItem('ContactList')) {
+        if (localStorage.getItem('Token') && store.getState().ContactList.length) {
             saveState({
                 ContactList: store.getState().ContactList
             })
