@@ -1,14 +1,23 @@
 import { UserLoggin, GuestLoggin } from "../component map/ComponentMap"
 /* import Auth from "./Auth" */
-/* import store from "../store/index" */
+import store from "../store/index"
 
 const ProtectedRoute = (props) => {
-    if (localStorage.getItem('Token')) {
-        return (
-            <UserLoggin />
-        )
+    try {
+        if (localStorage.getItem('Token') !== null) {
+            return (
+                <UserLoggin />
+            )
+        }
+        else {
+            return (
+                <GuestLoggin />
+            )
+        }
+    } catch (error) {
+
     }
-    else {
+    finally {
         return (
             <GuestLoggin />
         )
