@@ -2,30 +2,16 @@ import axios from "axios"
 import { saveState } from '../localStorage'
 import store from "../store/index"
 
-/*
-axios.interceptors.request.use(function (config) {
-
-    console.log("request");
-    console.log(config);
-    return config;
-}, function (error) {
-
-    return Promise.reject(error);
-});
-
 
 axios.interceptors.response.use(function (response) {
+    /* console.log(response); */
 
-    console.log("response");
-    console.log(response);
     if (response.data.IsSuccess === false) {
-        saveState({
-            User: store.getState().User
-        })
-
+        /* window.location.reload(true); */
+        window.location = "http://localhost:3000/login"
         localStorage.removeItem('Token')
-
-        alert(response.data.Result)
+        localStorage.removeItem('User')
+        localStorage.removeItem('ContactList')
         const sum = {
             status: response.status,
             data: {
@@ -36,9 +22,11 @@ axios.interceptors.response.use(function (response) {
         return sum
     }
     else {
-        saveState({
-            Token: store.getState().Token
-        })
+        if (response.data.IsSuccess === true) {
+            saveState({
+                Token: store.getState().Token
+            })
+        }
         return response;
     }
 
@@ -46,13 +34,15 @@ axios.interceptors.response.use(function (response) {
 
     if (err.response.status === 400) alert("Bad Request")
     if (err.response.status === 401) {
+        localStorage.removeItem('User')
         localStorage.removeItem('Token')
         localStorage.removeItem('ContactList')
+        window.location = "http://localhost:3000/login"
     }
     if (err.response.status === 500) alert("Server Error")
 
     return Promise.reject(err);
-}); */
+});
 
 
 
