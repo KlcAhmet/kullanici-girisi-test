@@ -80,6 +80,7 @@ const setUserReducer = (state = [], actions) => {
 }
 
 const getContactListReducer = (state = [], actions) => {
+    console.log(actions);
     /* "Result": "Oturum süresi doldu tekrardan giriş yapınız."*/
     if (actions.type === "getContactList" && actions.result.status === 200) {
         return actions.result.data.Result

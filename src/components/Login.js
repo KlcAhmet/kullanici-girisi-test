@@ -15,6 +15,7 @@ const Login = props => {
             saveState({
                 User: store.getState().User
             })
+            console.log(store.getState().Token);
             saveState({
                 Token: store.getState().Token
             })
