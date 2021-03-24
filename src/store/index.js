@@ -101,9 +101,6 @@ const setTokenReducer = (state = [], actions) => {
     if (actions.type === "login" && actions.result.status === 200) {
         return actions.result.data.Result.AccessToken
     }
-    else if (actions.type === "login") {
-        return actions.Result
-    }
     else {
         return state
     }
