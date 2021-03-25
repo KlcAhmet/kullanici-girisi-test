@@ -9,6 +9,7 @@ import {
 import { Home, Login, Navigation, ProtectedRoute } from "./component map/ComponentMap"
 /* CSS */
 import 'bootstrap/dist/css/bootstrap.min.css'
+import "toastr/build/toastr.min.css"
 
 function App() {
 

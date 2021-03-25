@@ -1,14 +1,11 @@
 import axios from "axios"
 import { saveState } from '../localStorage'
-import store from "../store/index"
-
+import toastr from "toastr"
 
 axios.interceptors.response.use(function (response) {
     /* console.log(response); */
 
     if (response.data.IsSuccess === false) {
-        /* window.location.reload(true); */
-        window.location = "http://localhost:3000/login"
         localStorage.removeItem('Token')
         localStorage.removeItem('User')
         localStorage.removeItem('ContactList')
@@ -19,12 +16,17 @@ axios.interceptors.response.use(function (response) {
                 Result: response.data.Result
             }
         }
+        console.log(response.data);
+        toastr.warning(response.data.ResultType, response.data.Result)
         return sum
     }
     else {
         if (response.data.IsSuccess === true) {
+            setTimeout(function () {
+                toastr.success("Giriş Başarılı")
+            }, 500);
             saveState({
-                Token: store.getState().Token
+                Token: response.data.Result.AccessToken
             })
         }
         return response;
@@ -34,10 +36,13 @@ axios.interceptors.response.use(function (response) {
 
     if (err.response.status === 400) alert("Bad Request")
     if (err.response.status === 401) {
+        toastr.warning(err.response.data.ResultType, `${err.response.data.Result} Oturum açmaya yönlendiriliyorsunuz`)
         localStorage.removeItem('User')
         localStorage.removeItem('Token')
         localStorage.removeItem('ContactList')
-        window.location = "http://localhost:3000/login"
+        setTimeout(function () {
+            window.location = "http://localhost:3000/login"
+        }, 1500);
     }
     if (err.response.status === 500) alert("Server Error")
 
