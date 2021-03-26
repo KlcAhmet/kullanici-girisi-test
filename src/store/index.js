@@ -7,6 +7,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { loadState } from '../localStorage'
 /* axios interceptors */
 import './axiosInterceptors'
+/* Message */
+import { Message } from '../component map/ComponentMap'
 
 
 // actions
@@ -19,7 +21,7 @@ export function login(e) {
         var formdata = new FormData()
         formdata.append('Email', e.target[0].value)
         formdata.append('Password', e.target[1].value)
-
+        Message("loading")
         const result = await axios.post(`${Access}/Account/Login`, formdata, axiosParameters)
         if (result.status === 200 && result.data.IsSuccess === false) {
             return await dispatch({
