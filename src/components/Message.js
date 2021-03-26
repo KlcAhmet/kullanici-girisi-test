@@ -1,16 +1,28 @@
 import toastr from "toastr"
 
 const Message = (param, text, subtext) => {
-    /*  toastr.options.escapeHtml = true; */
+    toastr.options.escapeHtml = true;
     if (param === 'loginSuccess') {
         toastr.success(`Merhaba ${text}. Giriş Başarılı.`)
-        /*   return (
-              toastr["success"](
-                  <div>
-                      <p>test</p>
-                  </div>
-              )
-          ) */
+    }
+    else if (param === 'loading') {
+        toastr.info(`Sunucudan haber bekleniyor`, null, {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-full-width",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "10",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        })
     }
     else if (param === 'unsuccessful') {
         toastr.warning(text, subtext)
