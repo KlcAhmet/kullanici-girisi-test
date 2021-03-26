@@ -1,6 +1,7 @@
 import axios from "axios"
 import { saveState } from '../localStorage'
 import { Message } from '../component map/ComponentMap'
+import History from '../components/History'
 
 axios.interceptors.response.use(function (response) {
     /* console.log(response); */
@@ -41,13 +42,14 @@ axios.interceptors.response.use(function (response) {
             localStorage.removeItem('Token')
             localStorage.removeItem('ContactList')
             setTimeout(function () {
-                window.location = "http://localhost:3000/login"
+                window.location.href = "/#/login"
+                /* History("/login") */
             }, 2000);
         }
         else if (err.response.status === 500) Message(0, "Server Error", `${err.response.status}`)
-        else {
-            return Promise.reject(err);
-        }
+
+        return Promise.reject(err);
+
     } catch (error) {
         if (!err.status) {
             Message(0, "Network Error", "Büyük ihtimal şirkette internet gitti.")
