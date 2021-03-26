@@ -1,48 +1,48 @@
-import React, { useState, useEffect } from "react"
+/* import React, { useState, useEffect } from "react"
 import axios from "axios"
 import Access from "./Access"
-import Table from 'react-bootstrap/Table'
+import Table from 'react-bootstrap/Table' */
 
 const Home = (() => {
-    const [tableHead, setTableHead] = useState([])
-    const [projectList, setProjectList] = useState([])
+    /* const [tableHead, setTableHead] = useState([])
+    const [projectList, setProjectList] = useState([]) */
 
 
-    useEffect(() => {
-
-        axios.post(`${Access}/Project/ProjectList`)
-            .then(function ({ data }) {
-                if (data.IsSuccess !== 1) {
-                    const i = []
-                    i.push(<p>Listeye ulaşılmıyor</p>)
-                    setProjectList(i)
-                }
-                else {
-                    const tableHeader = []
-                    const tableBody = []
-
-                    Object.keys(data.Result[0]).forEach((element, i) => tableHeader.push(<th key={i}>{element}</th>))
-                    setTableHead(tableHeader)
-
-                    data.Result.forEach((element, i) => {
-                        const td = []
-                        Object.values(element).forEach((e, i) => td.push(<td key={i}>{e}</td>))
-                        tableBody.push(<tr key={i}>{td}</tr>)
-                    })
-                    setProjectList(tableBody)
-                }
-
-
-
-            })
-            .catch(function (error) {
-                console.log("Hata")
-                console.log(error)
-            })
-    }, [])
+    /*   useEffect(() => {
+  
+          axios.post(`${Access}/Project/ProjectList`)
+              .then(function ({ data }) {
+                  if (data.IsSuccess !== 1) {
+                      const i = []
+                      i.push(<p>Listeye ulaşılmıyor</p>)
+                      setProjectList(i)
+                  }
+                  else {
+                      const tableHeader = []
+                      const tableBody = []
+  
+                      Object.keys(data.Result[0]).forEach((element, i) => tableHeader.push(<th key={i}>{element}</th>))
+                      setTableHead(tableHeader)
+  
+                      data.Result.forEach((element, i) => {
+                          const td = []
+                          Object.values(element).forEach((e, i) => td.push(<td key={i}>{e}</td>))
+                          tableBody.push(<tr key={i}>{td}</tr>)
+                      })
+                      setProjectList(tableBody)
+                  }
+  
+  
+  
+              })
+              .catch(function (error) {
+                  console.log("Hata")
+                  console.log(error)
+              })
+      }, []) */
     return (
         <div>
-            <Table striped bordered hover responsive variant="dark">
+            {/* <Table striped bordered hover responsive variant="dark">
                 <thead>
                     <tr>
                         {tableHead}
@@ -51,7 +51,8 @@ const Home = (() => {
                 <tbody>
                     {projectList}
                 </tbody>
-            </Table>
+            </Table> */}
+            <p>test</p>
         </div>
 
     )
