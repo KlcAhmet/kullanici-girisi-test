@@ -50,7 +50,7 @@ axios.interceptors.response.use(function (response) {
         }
     } catch (error) {
         if (!err.status) {
-            Message(0, "Network Error")
+            Message(0, "Network Error", "Büyük ihtimal şirkette internet gitti.")
         }
         return Promise.reject(err)
     }
