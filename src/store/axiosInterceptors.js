@@ -1,6 +1,6 @@
 import axios from "axios"
 import { saveState } from '../localStorage'
-import toastr from "toastr"
+import { Message } from '../component map/ComponentMap'
 
 axios.interceptors.response.use(function (response) {
     /* console.log(response); */
@@ -17,13 +17,13 @@ axios.interceptors.response.use(function (response) {
             }
         }
         console.log(response.data);
-        toastr.warning(response.data.ResultType, response.data.Result)
+        Message("unsuccessful", `${response.data.ResultType}, ${response.data.Result}`)
         return sum
     }
     else {
         if (response.data.IsSuccess === true) {
             setTimeout(function () {
-                toastr.success("Giriş Başarılı")
+                Message("loginSuccess", `${response.data.Result.UserInfo.FirstName}`)
             }, 500);
             saveState({
                 Token: response.data.Result.AccessToken
@@ -33,20 +33,29 @@ axios.interceptors.response.use(function (response) {
     }
 
 }, function (err) {
-
-    if (err.response.status === 400) alert("Bad Request")
-    if (err.response.status === 401) {
-        toastr.warning(err.response.data.ResultType, `${err.response.data.Result} Oturum açmaya yönlendiriliyorsunuz`)
-        localStorage.removeItem('User')
-        localStorage.removeItem('Token')
-        localStorage.removeItem('ContactList')
-        setTimeout(function () {
-            window.location = "http://localhost:3000/login"
-        }, 1500);
+    try {
+        if (err.response.status === 400) Message(0, "Bad Request", `${err.response.status}`,)
+        else if (err.response.status === 401) {
+            Message("UNAUTHORIZED", `${err.response.data.ResultType}`, `${err.response.data.Result}`)
+            localStorage.removeItem('User')
+            localStorage.removeItem('Token')
+            localStorage.removeItem('ContactList')
+            setTimeout(function () {
+                window.location = "http://localhost:3000/login"
+            }, 2000);
+        }
+        else if (err.response.status === 500) Message(0, "Server Error", `${err.response.status}`)
+        else {
+            return Promise.reject(err);
+        }
+    } catch (error) {
+        if (!err.status) {
+            Message(0, "Network Error")
+        }
+        return Promise.reject(err)
     }
-    if (err.response.status === 500) alert("Server Error")
 
-    return Promise.reject(err);
+
 });
 
 
