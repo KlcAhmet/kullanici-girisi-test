@@ -6,7 +6,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 /* localStorage */
 import { loadState } from '../localStorage'
 /* axios interceptors */
-import './axiosInterceptors'
+import '../services/axiosInterceptors'
 /* Message */
 import { Message } from '../component map/ComponentMap'
 

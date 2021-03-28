@@ -1,7 +1,6 @@
 import axios from "axios"
 import { saveState } from '../localStorage'
 import { Message } from '../component map/ComponentMap'
-import History from '../components/History'
 
 axios.interceptors.response.use(function (response) {
     /* console.log(response); */
