@@ -1,5 +1,5 @@
 import {
-  BrowserRouter as Router, Switch, Route
+  Router, Switch, Route
 } from "react-router-dom";
 /* Redux */
 /* import { useDispatch } from "react-redux" */
@@ -7,15 +7,17 @@ import {
 /* import store from "./store/index" */
 /* Components */
 import { Home, Login, Navigation, ProtectedRoute } from "./component map/ComponentMap"
+/* utils */
+import history from "./utils/history";
+
 /* CSS */
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "toastr/build/toastr.min.css"
 
 function App() {
-
   return (
     <div className="App">
-      <Router>
+      <Router history={history}>
         <Navigation />
         <Switch>
           <Route path="/login" component={Login} />
