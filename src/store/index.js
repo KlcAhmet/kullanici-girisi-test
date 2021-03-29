@@ -1,58 +1,23 @@
-import axios from "axios"
-import Access from "../components/Access"
 import thunk from 'redux-thunk';
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension';
-/* localStorage */
 import { loadState } from '../localStorage'
-/* axios interceptors */
-import '../services/axiosInterceptors'
-/* Message */
-import { Message } from '../component map/ComponentMap'
+import Post from '../services/Post'
 
 
 // actions
-export function login(e) {
+export function login(event) {
     return async (dispatch) => {
-        const axiosParameters = {
-            headers: { "Content-Type": "multipart/form-data" }
-        }
-
-        var formdata = new FormData()
-        formdata.append('Email', e.target[0].value)
-        formdata.append('Password', e.target[1].value)
-        Message("loading")
-        const result = await axios.post(`${Access}/Account/Login`, formdata, axiosParameters)
-        if (result.status === 200 && result.data.IsSuccess === false) {
-            return await dispatch({
-                type: 'login',
-                result: {
-                    success: false
-                }
-            })
-        }
+        const result = await Post.postLoginData(event)
         return await dispatch({
             type: 'login',
             result
         })
     }
 }
-export function getContactList(e) {
+export function getContactList(event) {
     return async (dispatch) => {
-        const axiosParameters = {
-            headers: {
-                "Content-Type": "multipart/form-data",
-                authorization: `Bearer ${Object.values(JSON.parse(localStorage.getItem('Token')))}`
-            }
-        }
-
-        var formdata = new FormData()
-        formdata.append('FullName', e.target[0].value)
-        formdata.append('Email', e.target[1].value)
-        formdata.append('Subject', e.target[2].value)
-        formdata.append('Message', e.target[3].value)
-
-        const result = await axios.post(`${Access}/ContactUs/List`, formdata, axiosParameters)
+        const result = await Post.postContactList(event)
         return await dispatch({
             type: 'getContactList',
             result
@@ -62,19 +27,8 @@ export function getContactList(e) {
 
 // reducer
 const setUserReducer = (state = [], actions) => {
-
-    if (actions.type === "login" && actions.result.success === false) return state
-
-    if (actions.type === "login" && actions.result.status === 200) {
+    if (actions.type === "login" && actions.result.data.IsSuccess === true) {
         return actions.result.data
-    }
-    else if (actions.type === "login" && actions.result.status === 400) {
-        //Bad Request
-        return state
-    }
-    else if (actions.type === "login" && actions.result.status === 500) {
-        //Internal Server Error
-        return state
     }
     else {
         return state
@@ -82,7 +36,6 @@ const setUserReducer = (state = [], actions) => {
 }
 
 const getContactListReducer = (state = [], actions) => {
-    /* "Result": "Oturum süresi doldu tekrardan giriş yapınız."*/
     if (actions.type === "getContactList" && actions.result.status === 200) {
         return actions.result.data.Result
     }
@@ -96,11 +49,7 @@ const getContactListReducer = (state = [], actions) => {
 
 
 const setTokenReducer = (state = [], actions) => {
-
-    if (actions.type === "login" && actions.result.success === false) return state
-
-    /* "Result": "Oturum süresi doldu tekrardan giriş yapınız."*/
-    if (actions.type === "login" && actions.result.status === 200) {
+    if (actions.type === "login" && actions.result.data.IsSuccess === true) {
         return actions.result.data.Result.AccessToken
     }
     else {
@@ -108,7 +57,6 @@ const setTokenReducer = (state = [], actions) => {
     }
 }
 const testReducer = (state = [], actions) => {
-    /* "Result": "Oturum süresi doldu tekrardan giriş yapınız."*/
     if (actions.type === "test" && actions.result.status === 200) {
         return actions
     }
@@ -123,13 +71,10 @@ const testReducer = (state = [], actions) => {
 const initialState = {
     User: {},
     Token: null,
-    ContactList: {},
+    ContactList: null,
     Test: 'asdsad'
 }
 
-
-//Display it in the console
-/* store.subscribe(() => { store.getState() }) */
 const persistedState = loadState(initialState);
 
 export const allReducers = combineReducers({
