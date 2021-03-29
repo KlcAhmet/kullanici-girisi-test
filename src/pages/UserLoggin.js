@@ -1,22 +1,16 @@
-/* import axios from "axios" */
-/* import Access from "./Access" */
-/* import Auth from "./Auth" */
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useSelector } from "react-redux";
 import { Form, Button, Table } from 'react-bootstrap'
-/* Redux */
 import store from "../store/index"
 import { getContactList } from "../store"
-import { saveState } from '../localStorage'
 
 const UserLoggin = props => {
+    const ContactList = useSelector(state => state.ContactList)
     const [tableHead, setTableHead] = useState([])
     const [list, setList] = useState([])
 
-    function contactRun() {
-        if (localStorage.getItem('Token') && store.getState().ContactList.length) {
-            saveState({
-                ContactList: store.getState().ContactList
-            })
+    useEffect(() => {
+        if (store.getState().ContactList) {
             const tableHeader = []
             const tableBody = []
             Object.keys(store.getState().ContactList[0]).forEach((element, i) => tableHeader.push(<th key={i}>{element}</th>))
@@ -28,21 +22,14 @@ const UserLoggin = props => {
                 tableBody.push(<tr key={i}>{td}</tr>)
             })
             setList(tableBody)
-            return
         }
-        else {
-            setTimeout(function () {
-                contactRun()
-            }, 500);
-        }
-    }
+    }, [ContactList])
 
     return (
         <>
             <Form onSubmit={(e) => {
                 e.preventDefault();
                 store.dispatch(getContactList(e))
-                contactRun()
             }}>
                 <Form.Group controlId="formBasicFullName">
                     <Form.Label>FullName</Form.Label>
