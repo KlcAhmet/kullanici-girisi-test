@@ -1,10 +1,7 @@
 import {
   Router, Switch, Route
 } from "react-router-dom";
-/* Redux */
-/* import { useDispatch } from "react-redux" */
-/* import { increment } from "./store/index" */
-/* import store from "./store/index" */
+
 /* Components */
 import { Home, Login, Navigation, ProtectedRoute } from "./component map/ComponentMap"
 /* utils */
