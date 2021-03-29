@@ -2,6 +2,7 @@ import axios from "axios"
 import './axiosInterceptors'
 import { Message } from '../component map/ComponentMap'
 import Access from "../components/Access"
+import store from "../store/index"
 
 // eslint-disable-next-line
 export default {
@@ -21,7 +22,7 @@ export default {
         const axiosParameters = {
             headers: {
                 "Content-Type": "multipart/form-data",
-                authorization: `Bearer ${Object.values(JSON.parse(localStorage.getItem('Token')))}`
+                authorization: `Bearer ${store.getState().Token}`
             }
         }
 

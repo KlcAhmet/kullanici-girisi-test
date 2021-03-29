@@ -1,8 +1,10 @@
 import { UserLoggin, GuestLoggin } from "../component map/ComponentMap"
+import { useSelector } from "react-redux"
 
 const ProtectedRoute = (props) => {
+    const Token = useSelector(state => state.Token)
     try {
-        if (localStorage.getItem('Token')) {
+        if (Token !== null) {
             return (
                 <UserLoggin />
             )
