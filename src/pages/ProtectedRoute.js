@@ -1,5 +1,4 @@
 import { UserLoggin, GuestLoggin } from "../component map/ComponentMap"
-/* import Auth from "./Auth" */
 
 const ProtectedRoute = (props) => {
     try {
