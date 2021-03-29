@@ -3,6 +3,7 @@ import toastr from "toastr"
 const Message = (param, text, subtext) => {
     toastr.options.escapeHtml = true;
     if (param === 'loginSuccess') {
+        toastr.clear()
         toastr.success(`Merhaba ${text}. Giriş Başarılı.`)
     }
     else if (param === 'loading') {
@@ -16,7 +17,7 @@ const Message = (param, text, subtext) => {
             "onclick": null,
             "showDuration": "10",
             "hideDuration": "1000",
-            "timeOut": "5000",
+            "timeOut": "20000",
             "extendedTimeOut": "1000",
             "showEasing": "swing",
             "hideEasing": "linear",
@@ -25,9 +26,14 @@ const Message = (param, text, subtext) => {
         })
     }
     else if (param === 'unsuccessful') {
+        toastr.clear()
         toastr.warning(text, subtext)
+        localStorage.removeItem('Token')
+        localStorage.removeItem('User')
+        localStorage.removeItem('ContactList')
     }
     else if (param === 'UNAUTHORIZED') {
+        toastr.clear()
         toastr.warning(text, `${subtext} Oturum açmaya yönlendiriliyorsunuz`, {
             "closeButton": true,
             "debug": false,
@@ -45,6 +51,12 @@ const Message = (param, text, subtext) => {
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
         })
+        localStorage.removeItem('User')
+        localStorage.removeItem('Token')
+        localStorage.removeItem('ContactList')
+        setTimeout(function () {
+            window.location = "/login"
+        }, 2000);
     }
     else {
         toastr.warning(text, subtext)
