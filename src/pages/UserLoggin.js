@@ -10,13 +10,13 @@ const UserLoggin = props => {
     const [list, setList] = useState([])
 
     useEffect(() => {
-        if (store.getState().ContactList) {
+        if (ContactList) {
             const tableHeader = []
             const tableBody = []
-            Object.keys(store.getState().ContactList[0]).forEach((element, i) => tableHeader.push(<th key={i}>{element}</th>))
+            Object.keys(ContactList[0]).forEach((element, i) => tableHeader.push(<th key={i}>{element}</th>))
             setTableHead(tableHeader)
 
-            store.getState().ContactList.forEach((element, i) => {
+            ContactList.forEach((element, i) => {
                 const td = []
                 Object.values(element).forEach((e, i) => td.push(<td key={i}>{e}</td>))
                 tableBody.push(<tr key={i}>{td}</tr>)
