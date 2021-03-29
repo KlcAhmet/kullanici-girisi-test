@@ -1,39 +1,28 @@
-/* import axios from "axios" */
+import { useEffect } from 'react'
+import { useSelector } from "react-redux";
 import { Form, Button } from 'react-bootstrap'
-/* import Access from "./Access" */
-/* import Auth from "./Auth" */
-/* Redux */
-import store from "../store/index"
-import { login } from "../store"
-/* localStorage */
+import store, { login } from "../store/index"
 import { saveState } from '../localStorage'
+import history from '../utils/history'
 
 const Login = props => {
-    /*    console.log(store.getState()); */
-    function loginRun() {
+    const Token = useSelector(state => state.Token);
+    useEffect(() => {
         if (store.getState().Token) {
             saveState({
                 User: store.getState().User
             })
-            props.history.push("/contact")
-            return
+            saveState({
+                Token: store.getState().Token
+            })
+            history.push("/contact")
         }
-        else if (store.getState().User.IsSuccess === false) {
-            alert(store.getState().User.Result)
-            return
-        }
-        else {
-            setTimeout(function () {
-                loginRun()
-            }, 500);
-        }
-    }
+    }, [Token])
 
     return (
         <Form onSubmit={(e) => {
             e.preventDefault();
             store.dispatch(login(e))
-            loginRun()
         }}>
             <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
