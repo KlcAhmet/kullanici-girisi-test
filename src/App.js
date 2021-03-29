@@ -10,9 +10,9 @@ import history from "./utils/history";
 /* CSS */
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "toastr/build/toastr.min.css"
-import "~normalize.css"
-import "~@blueprintjs/core/lib/css/blueprint.css"
-import "~@blueprintjs/icons/lib/css/blueprint-icons.css"
+import "normalize.css"
+import "@blueprintjs/core/lib/css/blueprint.css"
+import "@blueprintjs/icons/lib/css/blueprint-icons.css"
 
 function App() {
   return (
