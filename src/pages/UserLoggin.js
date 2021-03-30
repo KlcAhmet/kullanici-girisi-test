@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
+/* Redux */
 import { useSelector } from "react-redux";
-import { Form, Button, Table } from 'react-bootstrap'
-import store from "../store/index"
-import { getContactList } from "../store"
+import store, { getContactList } from "../store/index"
+/* Components */
+import { Row, Col } from 'react-bootstrap'
+import { Button, FormGroup, InputGroup, TextArea } from "@blueprintjs/core";
 
 const UserLoggin = props => {
     const ContactList = useSelector(state => state.ContactList)
@@ -26,43 +28,49 @@ const UserLoggin = props => {
     }, [ContactList])
 
     return (
-        <>
-            <Form onSubmit={(e) => {
-                e.preventDefault();
-                store.dispatch(getContactList(e))
-            }}>
-                <Form.Group controlId="formBasicFullName">
-                    <Form.Label>FullName</Form.Label>
-                    <Form.Control type="text" placeholder="FullName" defaultValue="Test Name" />
-                </Form.Group>
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" defaultValue="testd@mail.com" />
-                </Form.Group>
-                <Form.Group controlId="formBasicSubject">
-                    <Form.Label>Subject</Form.Label>
-                    <Form.Control type="text" placeholder="Subject" defaultValue="Test Subject" />
-                </Form.Group>
-                <Form.Group controlId="formBasicMessage">
-                    <Form.Label>Message</Form.Label>
-                    <Form.Control type="text" placeholder="Message" defaultValue="Test Message" />
-                </Form.Group>
-
-                <Button variant="primary" type="submit">Gönder</Button>
-            </Form>
-            <div>
-                <Table striped bordered hover responsive variant="dark">
-                    <thead>
-                        <tr>
-                            {tableHead}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {list}
-                    </tbody>
-                </Table>
-            </div>
-        </>
+        <div className="userlogin">
+            <Row className="justify-content-center" style={{ margin: 0 }}>
+                <Col xs={2} >
+                    <form onSubmit={(e) => {
+                        e.preventDefault()
+                        store.dispatch(getContactList(e))
+                    }}>
+                        <FormGroup label="Full Name" labelFor="text-name" labelInfo="(Zorunlu)">
+                            <InputGroup type="text" id="text-name" defaultValue="Test Name" />
+                        </FormGroup>
+                        <FormGroup
+                            label="Email" labelFor="text-email" labelInfo="(Zorunlu)">
+                            <InputGroup type="email" id="text-email" defaultValue="test@mail.com" />
+                        </FormGroup>
+                        <FormGroup
+                            label="Subject" labelFor="text-subject" labelInfo="(Zorunlu)">
+                            <InputGroup type="text" id="text-subject" defaultValue="Test Subject" />
+                        </FormGroup>
+                        <FormGroup
+                            label="Subject" labelFor="text-subject" labelInfo="(Zorunlu)">
+                            <InputGroup type="text" id="text-subject" defaultValue="Test Subject" />
+                        </FormGroup>
+                        <FormGroup
+                            label="Message" labelFor="text-message" labelInfo="(Zorunlu)">
+                            <TextArea fill={true} defaultValue="Test Message Test Message Test Message Test Message Test Message" />
+                        </FormGroup>
+                        <Button className="contactbtn bp3-button bp3-intent-primary bp3-large" type="submit">Gönder</Button>
+                    </form>
+                </Col>
+                <Col>
+                    <table className="bp3-html-table bp3-html-table-bordered bp3-html-table-striped bp3-interactive bp3-small">
+                        <thead>
+                            <tr>
+                                {tableHead}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {list}
+                        </tbody>
+                    </table>
+                </Col>
+            </Row>
+        </div>
     )
 }
 
