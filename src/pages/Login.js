@@ -48,12 +48,12 @@ const Login = props => {
                     e.preventDefault();
                     store.dispatch(login(e))
                 }}>
-                    <FormGroup label="Email" labelFor="text-email" labelInfo="(Zorunlu)">
-                        <InputGroup type="email" id="text-email" placeholder="deneme@serd.com" palaceholder="deneme@deneme.com" />
+                    <FormGroup label="Email" labelFor="text-emailadd" labelInfo="(Zorunlu)">
+                        <InputGroup type="email" id="text-emailadd" placeholder="deneme@serd.com" palaceholder="deneme@deneme.com" />
                     </FormGroup>
                     <FormGroup
-                        label="Şifre" labelFor="text-password" labelInfo="(Zorunlu)">
-                        <InputGroup type="password" id="text-password" placeholder="*******" />
+                        label="Şifre" labelFor="text-passwordadd" labelInfo="(Zorunlu)">
+                        <InputGroup type="password" id="text-passwordadd" placeholder="*******" />
                     </FormGroup>
                     <FormGroup
                         label="İsim" labelFor="text-firstName" labelInfo="(Zorunlu)">
