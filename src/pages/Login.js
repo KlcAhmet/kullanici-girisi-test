@@ -1,9 +1,10 @@
 import { useEffect } from 'react'
 import { useSelector } from "react-redux";
-import { Form, Button } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import store, { login } from "../store/index"
 import { saveState } from '../localStorage'
 import history from '../utils/history'
+import { Button, FormGroup, InputGroup } from "@blueprintjs/core";
 
 const Login = props => {
     const Token = useSelector(state => state.Token);
@@ -20,24 +21,28 @@ const Login = props => {
     }, [Token])
 
     return (
-        <Form onSubmit={(e) => {
-            e.preventDefault();
-            store.dispatch(login(e))
-        }}>
-            <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" defaultValue="semihcetin34@gmail.com" />
-            </Form.Group>
-
-            <Form.Group controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" defaultValue="1" />
-            </Form.Group>
-            <Button variant="primary" type="submit">Gönder</Button>
-        </Form >
+        <Row className="justify-content-center">
+            <Col xs={2} >
+                <form onSubmit={(e) => {
+                    e.preventDefault();
+                    store.dispatch(login(e))
+                }}>
+                    <FormGroup label="Email" labelFor="text-email" labelInfo="(required)">
+                        <InputGroup type="email" id="text-email" placeholder="deneme@serd.com" defaultValue="semihcetin34@gmail.com" />
+                    </FormGroup>
+                    <FormGroup
+                        label="Şifre" labelFor="text-password" labelInfo="(required)">
+                        <InputGroup type="password" id="text-password" placeholder="*******" defaultValue="1" />
+                    </FormGroup>
+                    <div className="buttons">
+                        <Button className="buttons-btn bp3-button bp3-intent-success bp3-large" type="submit">Giriş</Button>
+                        <Button className="buttons-btn bp3-button bp3-intent-primary bp3-large" type="button">Kaydol</Button>
+                    </div>
+                </form>
+            </Col>
+        </Row >
     )
 }
-
 
 
 export default Login
