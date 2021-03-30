@@ -1,9 +1,12 @@
 import { useEffect } from 'react'
-import { useSelector } from "react-redux";
-import { Row, Col } from 'react-bootstrap'
-import store, { login } from "../store/index"
 import { saveState } from '../localStorage'
+/* Redux */
+import { useSelector } from "react-redux";
+import store, { login } from "../store/index"
+/* Utils */
 import history from '../utils/history'
+/* Components */
+import { Row, Col } from 'react-bootstrap'
 import { Button, FormGroup, InputGroup } from "@blueprintjs/core";
 
 const Login = props => {
@@ -27,11 +30,11 @@ const Login = props => {
                     e.preventDefault();
                     store.dispatch(login(e))
                 }}>
-                    <FormGroup label="Email" labelFor="text-email" labelInfo="(required)">
+                    <FormGroup label="Email" labelFor="text-email" labelInfo="(Zorunlu)">
                         <InputGroup type="email" id="text-email" placeholder="deneme@serd.com" defaultValue="semihcetin34@gmail.com" />
                     </FormGroup>
                     <FormGroup
-                        label="Şifre" labelFor="text-password" labelInfo="(required)">
+                        label="Şifre" labelFor="text-password" labelInfo="(Zorunlu)">
                         <InputGroup type="password" id="text-password" placeholder="*******" defaultValue="1" />
                     </FormGroup>
                     <div className="buttons">
