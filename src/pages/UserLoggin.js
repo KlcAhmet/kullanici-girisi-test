@@ -52,7 +52,7 @@ const UserLoggin = props => {
                         </FormGroup>
                         <FormGroup
                             label="Message" labelFor="text-message" labelInfo="(Zorunlu)">
-                            <TextArea fill={true} defaultValue="Test Message Test Message Test Message Test Message Test Message" />
+                            <TextArea fill={true} id="text-message" defaultValue="Test Message Test Message Test Message Test Message Test Message" />
                         </FormGroup>
                         <Button className="contactbtn bp3-button bp3-intent-primary bp3-large" type="submit">Gönder</Button>
                     </form>
