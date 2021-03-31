@@ -3,7 +3,7 @@ import {
 } from "react-router-dom";
 
 /* Components */
-import { Home, Login, Navigation, ProtectedRoute } from "./component map/ComponentMap"
+import { Home, Login, Navigation, ProtectedRoute, Register } from "./component map/ComponentMap"
 /* utils */
 import history from "./utils/history";
 
@@ -20,6 +20,7 @@ function App() {
       <Router history={history}>
         <Navigation />
         <Switch>
+          <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
           <ProtectedRoute path='/contact' />
           <Route path="/" component={Home} />
