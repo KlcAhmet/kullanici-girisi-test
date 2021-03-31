@@ -7,7 +7,6 @@ import store from "../store/index"
 // eslint-disable-next-line
 export default {
     postLoginData(event) {
-
         const axiosParameters = {
             headers: { "Content-Type": "multipart/form-data" }
         }
@@ -33,6 +32,23 @@ export default {
         formdata.append('Message', event.target[3].value)
 
         return axios.post(`${Access}/ContactUs/List`, formdata, axiosParameters)
+    },
+    postAccountCreate(event) {
+        const axiosParameters = {
+            headers: { "Content-Type": "multipart/form-data" }
+        }
+
+        var formdata = new FormData()
+        formdata.append('Email', event.target[0].value)
+        formdata.append('Password', event.target[1].value)
+        formdata.append('FirstName', event.target[2].value)
+        formdata.append('LastName', event.target[3].value)
+        formdata.append('PhoneNumber', event.target[4].value)
+        formdata.append('BirthDate', event.target[5].value)
+        formdata.append('Gender', event.target[6].value)
+        formdata.append('Address', event.target[7].value)
+
+        return axios.post(`${Access}/Account/Create`, formdata, axiosParameters)
     }
 
 }
