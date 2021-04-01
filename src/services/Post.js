@@ -49,6 +49,16 @@ export default {
         formdata.append('Address', event.target[7].value)
 
         return axios.post(`${Access}/Account/Create`, formdata, axiosParameters)
+    },
+    forgotPassword(event) {
+        const axiosParameters = {
+            headers: { "Content-Type": "multipart/form-data" }
+        }
+
+        var formdata = new FormData()
+        formdata.append('Email', event.target[0].value)
+
+        return axios.post(`${Access}/Account/ForgotPassword`, formdata, axiosParameters)
     }
 
 }
