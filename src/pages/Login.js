@@ -8,13 +8,10 @@ import history from '../utils/history'
 /* Components */
 import { Row, Col, Container } from 'react-bootstrap'
 import { Button, FormGroup, InputGroup } from "@blueprintjs/core";
+import { Link } from 'react-router-dom';
 
 const Login = props => {
     const Token = useSelector(state => state.Token);
-
-    const goRegister = () => {
-        history.push("register")
-    }
 
     useEffect(() => {
         if (store.getState().Token) {
@@ -31,7 +28,7 @@ const Login = props => {
     return (
         <Container>
             <Row className="justify-content-center">
-                <Col xs={3} >
+                <Col xs={4} >
                     <form onSubmit={(e) => {
                         e.preventDefault();
                         store.dispatch(login(e))
@@ -45,9 +42,12 @@ const Login = props => {
                         </FormGroup>
                         <div className="buttons">
                             <Button className="buttons-btn bp3-button bp3-intent-success bp3-large" type="submit">Giriş</Button>
-                            <Button className="buttons-btn bp3-button bp3-intent-primary bp3-large" type="button" onClick={goRegister}>Kaydol</Button>
+                            <Link to="/register"><Button className="buttons-btn bp3-button bp3-intent-primary bp3-large" type="button">Kaydol</Button></Link>
                         </div>
                     </form>
+                    <div>
+                        <Link to="/forgetpassword">Şifremi unuttum</Link>
+                    </div>
                 </Col>
             </Row >
         </Container>
