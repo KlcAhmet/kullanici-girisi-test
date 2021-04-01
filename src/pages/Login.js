@@ -46,7 +46,7 @@ const Login = props => {
                         </div>
                     </form>
                     <div>
-                        <Link to="/forgetpassword">Şifremi unuttum</Link>
+                        <Link to="/forgotpassword">Şifremi unuttum</Link>
                     </div>
                 </Col>
             </Row >
