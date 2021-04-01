@@ -1,4 +1,6 @@
 import toastr from "toastr"
+/* Utils */
+import history from "../utils/history"
 
 const Message = (param, text, subtext) => {
     toastr.options.escapeHtml = true;
@@ -32,6 +34,29 @@ const Message = (param, text, subtext) => {
         localStorage.removeItem('User')
         localStorage.removeItem('ContactList')
     }
+    else if (param === 'registersuccess') {
+        toastr.clear()
+        toastr.success(text, "Mail adresinizden üyeliğinizi onaylamayı unutmayın. Giriş sayfasına yönlendiriliyorsunuz.", {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "4000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        })
+        setTimeout(function () {
+            history.push("/login")
+        }, 4000);
+    }
     else if (param === 'UNAUTHORIZED') {
         toastr.clear()
         toastr.warning(text, `${subtext} Oturum açmaya yönlendiriliyorsunuz`, {
@@ -56,7 +81,7 @@ const Message = (param, text, subtext) => {
         localStorage.removeItem('ContactList')
         setTimeout(function () {
             window.location = "/login"
-        }, 2000);
+        }, 4000);
     }
     else {
         toastr.warning(text, subtext)
