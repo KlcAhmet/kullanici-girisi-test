@@ -1,0 +1,11 @@
+.navBar {
+    padding: 0;
+    &-frame {}
+    &-group {
+        &-btn {
+             :hover {
+                color: #fff !important;
+            }
+        }
+    }
+}
