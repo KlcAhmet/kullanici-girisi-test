@@ -1,0 +1,56 @@
+.login--display {
+  margin-top: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.login-form {
+  border: 1px solid rgba(104, 102, 102, 0.534);
+  border-radius: 10px;
+  padding: 13px;
+}
+
+.login-form-group label {
+  font-weight: 700;
+}
+
+.login-form-group label span {
+  font-weight: 400;
+}
+
+.login-form-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.login-form-btn button {
+  width: 100%;
+}
+
+.login-form:hover {
+  border-color: #ff6000;
+}
+
+.login-forgotpassword {
+  margin-left: 10px;
+  font-weight: 600;
+  color: #ff6000;
+}
+
+.login-forgotpassword:hover {
+  color: #c25700;
+}
+/*# sourceMappingURL=Login.css.map */
