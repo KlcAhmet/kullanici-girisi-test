@@ -1,0 +1,35 @@
+.register--display {
+  margin-top: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.register-form {
+  border: 1px solid rgba(104, 102, 102, 0.534);
+  border-radius: 10px;
+  padding: 13px;
+}
+
+.register-form-group label {
+  font-weight: 700;
+}
+
+.register-form-group label span {
+  font-weight: 400;
+}
+
+.register-form-btn button {
+  width: 100%;
+}
+
+.register-form:hover {
+  border-color: #ff6000;
+}
+/*# sourceMappingURL=Register.css.map */

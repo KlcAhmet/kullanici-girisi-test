@@ -1,0 +1,29 @@
+.register {
+    &--display {
+        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &-form {
+        border: 1px solid rgba(104, 102, 102, 0.534);
+        border-radius: 10px;
+        padding: 13px;
+        &-group {
+            label {
+                font-weight: 700;
+                span {
+                    font-weight: 400;
+                }
+            }
+        }
+        &-btn {
+            button {
+                width: 100%;
+            }
+        }
+        &:hover {
+            border-color: #ff6000;
+        }
+    }
+}
