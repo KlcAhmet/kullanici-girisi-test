@@ -4,6 +4,16 @@ import Access from "./Access"
 import Table from 'react-bootstrap/Table' */
 
 const Home = (() => {
+
+    /* 
+    
+            Api içerik bekleniyor
+    
+    
+    */
+
+
+
     /* const [tableHead, setTableHead] = useState([])
     const [projectList, setProjectList] = useState([]) */
 
