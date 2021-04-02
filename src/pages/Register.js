@@ -40,7 +40,7 @@ const Register = () => {
                             <TextArea fill={true} id="text-address" defaultValue="Edirne" />
                         </FormGroup>
                         <div className="register-form-btn">
-                            <Button className=" bp3-button bp3-intent-primary bp3-large" type="submit">Kaydol</Button>
+                            <Button className=" bp3-button bp3-intent-primary bp3-large bp3-fill" type="submit">Kaydol</Button>
                         </div>
                     </form>
                 </Col>

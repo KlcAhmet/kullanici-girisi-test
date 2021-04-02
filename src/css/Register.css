@@ -25,10 +25,6 @@
   font-weight: 400;
 }
 
-.register-form-btn button {
-  width: 100%;
-}
-
 .register-form:hover {
   border-color: #ff6000;
 }

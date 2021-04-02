@@ -36,10 +36,6 @@
   margin-bottom: 10px;
 }
 
-.login-form-btn button {
-  width: 100%;
-}
-
 .login-form:hover {
   border-color: #ff6000;
 }

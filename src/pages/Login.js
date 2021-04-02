@@ -42,8 +42,8 @@ const Login = props => {
                             <InputGroup type="password" id="text-password" placeholder="*******" defaultValue="1" />
                         </FormGroup>
                         <div className="login-form-btn">
-                            <Button className="login-form-btn-giris buttons-btn bp3-button bp3-intent-success bp3-large" type="submit">Giriş</Button>
-                            <Link to="/register"><Button className="login-form-btn-kaydol buttons-btn bp3-button bp3-intent-primary bp3-large" type="button">Kaydol</Button></Link>
+                            <Button className="login-form-btn-giris buttons-btn bp3-button bp3-intent-success bp3-large bp3-fill" type="submit">Giriş</Button>
+                            <Link to="/register"><Button className="login-form-btn-kaydol buttons-btn bp3-button bp3-intent-primary bp3-large bp3-fill" type="button">Kaydol</Button></Link>
                         </div>
                     </form>
                     <Link className="login-forgotpassword" to="/forgotpassword">Şifremi unuttum</Link>
