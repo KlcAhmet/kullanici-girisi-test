@@ -1,0 +1,15 @@
+.guest {
+    &--display {
+        margin-top: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &-title {
+        color: #ff6000;
+        background-color: #ff62001e;
+        text-align: center;
+        font-size: 30px;
+        padding: 10px 0;
+    }
+}
