@@ -24,3 +24,4 @@ yarn-error.log*
 # access
 src/components/Access.js
 # other
+src/css/Navigation.css.map
