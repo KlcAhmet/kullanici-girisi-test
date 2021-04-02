@@ -16,13 +16,13 @@ const Navigation = (() => {
                 link: "/"
             },
             {
-                title: "login",
+                title: "Login",
                 link: "/login"
             }, {
-                title: "contactUs",
+                title: "Contact us",
                 link: "/contact"
             }, {
-                title: "WriteUs",
+                title: "Write us",
                 link: "/write"
             }]
         const resultNav = []
@@ -37,7 +37,7 @@ const Navigation = (() => {
             <Navbar className="navBar-frame bp3-dark">
                 <Navbar.Group className="navBar-group" align={Alignment.RIGHT}>
                     {navLinks}
-                    <Button className="navBar-group-btn-cog bp3-button bp3-minimal bp3-icon-cog" />
+                    <Button className="navBar-group-btn-cog bp3-button bp3-minimal bp3-icon-user" />
                 </Navbar.Group>
             </Navbar>
         </Col>
