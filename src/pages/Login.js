@@ -9,6 +9,8 @@ import history from '../utils/history'
 import { Row, Col, Container } from 'react-bootstrap'
 import { Button, FormGroup, InputGroup } from "@blueprintjs/core";
 import { Link } from 'react-router-dom';
+/* Css */
+import '../css/Login.css'
 
 const Login = props => {
     const Token = useSelector(state => state.Token);
@@ -27,27 +29,24 @@ const Login = props => {
 
     return (
         <Container>
-            <Row className="justify-content-center">
-                <Col xs={4} >
+            <Row className="login login--display">
+                <Col className="login-form" xs={11} md={3} >
                     <form onSubmit={(e) => {
                         e.preventDefault();
                         store.dispatch(login(e))
                     }}>
-                        <FormGroup label="Email" labelFor="text-email" labelInfo="(Zorunlu)">
+                        <FormGroup className="login-form-group" label="Email" labelFor="text-email" labelInfo="(Zorunlu)">
                             <InputGroup type="email" id="text-email" placeholder="deneme@deneme.com" defaultValue="semihcetin34@gmail.com" />
                         </FormGroup>
-                        <FormGroup
-                            label="Şifre" labelFor="text-password" labelInfo="(Zorunlu)">
+                        <FormGroup className="login-form-group" label="Şifre" labelFor="text-password" labelInfo="(Zorunlu)">
                             <InputGroup type="password" id="text-password" placeholder="*******" defaultValue="1" />
                         </FormGroup>
-                        <div className="buttons">
-                            <Button className="buttons-btn bp3-button bp3-intent-success bp3-large" type="submit">Giriş</Button>
-                            <Link to="/register"><Button className="buttons-btn bp3-button bp3-intent-primary bp3-large" type="button">Kaydol</Button></Link>
+                        <div className="login-form-btn">
+                            <Button className="login-form-btn-giris buttons-btn bp3-button bp3-intent-success bp3-large" type="submit">Giriş</Button>
+                            <Link to="/register"><Button className="login-form-btn-kaydol buttons-btn bp3-button bp3-intent-primary bp3-large" type="button">Kaydol</Button></Link>
                         </div>
                     </form>
-                    <div>
-                        <Link to="/forgotpassword">Şifremi unuttum</Link>
-                    </div>
+                    <Link className="login-forgotpassword" to="/forgotpassword">Şifremi unuttum</Link>
                 </Col>
             </Row >
         </Container>
