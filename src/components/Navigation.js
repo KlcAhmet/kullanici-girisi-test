@@ -5,6 +5,7 @@ import { Col } from 'react-bootstrap'
 import { Button, Navbar, Alignment } from "@blueprintjs/core";
 /* Css */
 import '../css/Navigation.css'
+/* Utils */
 import EventBus from "../utils/Eventbus/EventBus"
 
 const Navigation = (() => {
@@ -33,8 +34,8 @@ const Navigation = (() => {
             resultNav.push(<Button className="navBar-group-btn bp3-button bp3-minimal" key={i}><NavLink exact to={link}>{title}</NavLink></Button>)
         });
         setNavLinks(resultNav)
-        EventBus.addListener("login", ({ message }) => {
-            setName(Object.values(message))
+        EventBus.addListener("login", ({ type, message }) => {
+            if (type === "loginSuccess") setName(message)
         })
 
     }, [])
