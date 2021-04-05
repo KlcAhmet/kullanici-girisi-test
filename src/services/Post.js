@@ -1,8 +1,9 @@
 import axios from "axios"
 import './axiosInterceptors'
-import { Message } from '../component map/ComponentMap'
 import Access from "../components/Access"
 import store from "../store/index"
+/* Utilst */
+import { Events } from '../utils/Eventbus/EventBusEvents'
 
 // eslint-disable-next-line
 export default {
@@ -14,7 +15,7 @@ export default {
         var formdata = new FormData()
         formdata.append('Email', event.target[0].value)
         formdata.append('Password', event.target[1].value)
-        Message("loading")
+        Events("loading", "loading", "Sunucudan haber bekleniyor")
         return axios.post(`${Access}/Account/Login`, formdata, axiosParameters)
     },
     postContactList(event) {
