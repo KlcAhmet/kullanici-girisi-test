@@ -5,9 +5,12 @@ import { Col } from 'react-bootstrap'
 import { Button, Navbar, Alignment } from "@blueprintjs/core";
 /* Css */
 import '../css/Navigation.css'
+import EventBus from "../utils/Eventbus/EventBus"
 
 const Navigation = (() => {
     const [navLinks, setNavLinks] = useState([])
+    const [name, setName] = useState("")
+
 
     useEffect(() => {
         const link = [
@@ -30,6 +33,10 @@ const Navigation = (() => {
             resultNav.push(<Button className="navBar-group-btn bp3-button bp3-minimal" key={i}><NavLink exact to={link}>{title}</NavLink></Button>)
         });
         setNavLinks(resultNav)
+        EventBus.addListener("login", ({ message }) => {
+            setName(Object.values(message))
+        })
+
     }, [])
 
     return (
@@ -37,7 +44,7 @@ const Navigation = (() => {
             <Navbar className="navBar-frame bp3-dark">
                 <Navbar.Group className="navBar-group" align={Alignment.RIGHT}>
                     {navLinks}
-                    <Button className="navBar-group-btn-cog bp3-button bp3-minimal bp3-icon-user" />
+                    <Button className="navBar-group-btn-cog bp3-button bp3-minimal bp3-icon-user">{name}</Button>
                 </Navbar.Group>
             </Navbar>
         </Col>
