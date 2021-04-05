@@ -5,6 +5,7 @@ import EventBus from "../utils/Eventbus/EventBus"
 
 const Message = () => {
     toastr.options.escapeHtml = true;
+    /* Response 200 */
     EventBus.addListener("login", ({ type, message, submessage }) => {
         if (type === 'loginSuccess') {
             toastr.clear()
@@ -39,11 +40,8 @@ const Message = () => {
             })
         }
     })
-
-
-    /*  
-        
-        else if (type === 'registersuccess') {
+    EventBus.addListener("register", ({ type, message, submessage }) => {
+        if (type === 'registersuccess') {
             toastr.clear()
             toastr.success(message, "Mail adresinizden üyeliğinizi onaylamayı unutmayın. Giriş sayfasına yönlendiriliyorsunuz.", {
                 "closeButton": false,
@@ -66,7 +64,11 @@ const Message = () => {
                 history.push("/login")
             }, 4000);
         }
-        else if (type === 'UNAUTHORIZED') {
+    })
+
+    /* Response Error */
+    EventBus.addListener("UNAUTHORIZED", ({ type, message, submessage }) => {
+        if (type === 'UNAUTHORIZED') {
             toastr.clear()
             toastr.warning(message, `${submessage} Oturum açmaya yönlendiriliyorsunuz`, {
                 "closeButton": true,
@@ -92,10 +94,20 @@ const Message = () => {
                 window.location = "/login"
             }, 4000);
         }
+    })
+    EventBus.addListener("error", ({ type, message, submessage }) => {
+        if (type === '400') {
+            toastr.warning("Hata kodu: 400", message)
+        }
+        else if (type === '500') {
+            toastr.warning("Hata kodu: 500", message)
+        }
         else {
-            toastr.warning(message, submessage)
-        } */
+            toastr.clear()
+            toastr.warning(message)
+        }
 
+    })
 }
 
 export default Message
