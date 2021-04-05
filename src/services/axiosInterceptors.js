@@ -6,7 +6,7 @@ axios.interceptors.response.use(function (response) {
     if (response.status === 200 && response.data.IsSuccess === false) Message("unsuccessful", `${response.data.ResultType}, ${response.data.Result}`)
     else if (response.status === 200 && response.data.IsSuccess === true) {
         Message("loginSuccess", `${response.data.Result.UserInfo.FirstName}`)
-        Events("login", "success", `${response.data.Result.UserInfo.FirstName}`)
+        Events("login", "loginSuccess", `${response.data.Result.UserInfo.FirstName}`)
     }
     else if (response.status === 200 && response.data.IsSuccess === 1 && response.data.ResultType === "SUCCESS") Message("registersuccess", `${response.data.Result}`)
 
