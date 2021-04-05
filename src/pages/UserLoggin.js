@@ -30,7 +30,7 @@ const UserLoggin = props => {
     return (
         <div className="userlogin">
             <Row className="justify-content-center" style={{ margin: 0 }}>
-                <Col xs={2} >
+                <Col xs={11} sm={11} md={11} lg={2} xl={2} >
                     <form onSubmit={(e) => {
                         e.preventDefault()
                         store.dispatch(getContactList(e))

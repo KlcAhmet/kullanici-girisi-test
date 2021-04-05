@@ -30,7 +30,7 @@ const Login = props => {
     return (
         <Container>
             <Row className="login login--display">
-                <Col className="login-form" xs={11} md={3} >
+                <Col className="login-form" xs={11} sm={6} md={6} lg={4} xl={4} >
                     <form onSubmit={(e) => {
                         e.preventDefault();
                         store.dispatch(login(e))
