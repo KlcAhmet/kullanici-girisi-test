@@ -3,7 +3,7 @@ import {
 } from "react-router-dom";
 
 /* Components */
-import { Home, Login, Navigation, ProtectedRoute, Register, ForgotPassword } from "./component map/ComponentMap"
+import { Home, Login, Navigation, ProtectedRoute, Register, ForgotPassword, Message } from "./component map/ComponentMap"
 /* utils */
 import history from "./utils/history";
 
@@ -13,8 +13,11 @@ import "toastr/build/toastr.min.css"
 import "normalize.css"
 import "@blueprintjs/core/lib/css/blueprint.css"
 import "@blueprintjs/icons/lib/css/blueprint-icons.css"
+import { useEffect } from "react";
 
 function App() {
+  useEffect(() => { Message() })
+
   return (
     <div className="App">
       <Router history={history}>
