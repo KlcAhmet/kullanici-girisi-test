@@ -7,6 +7,7 @@ import { Button, Navbar, Alignment } from "@blueprintjs/core";
 import '../css/Navigation.css'
 /* Utils */
 import EventBus from "../utils/Eventbus/EventBus"
+import consts from "../consts"
 
 const Navigation = (() => {
     const [navLinks, setNavLinks] = useState([])
@@ -34,8 +35,8 @@ const Navigation = (() => {
             resultNav.push(<Button className="navBar-group-btn bp3-button bp3-minimal" key={i}><NavLink exact to={link}>{title}</NavLink></Button>)
         });
         setNavLinks(resultNav)
-        EventBus.addListener("login", ({ type, message }) => {
-            if (type === "loginSuccess") setName(message)
+        EventBus.addListener(consts.events.login, ({ type, message }) => {
+            if (type === consts.events.types.loginSuccess) setName(message)
         })
 
     }, [])
