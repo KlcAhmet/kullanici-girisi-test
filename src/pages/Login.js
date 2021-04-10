@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { saveState } from '../localStorage'
 /* Redux */
 import { useSelector } from "react-redux";
@@ -11,9 +11,12 @@ import { Button, FormGroup, InputGroup } from "@blueprintjs/core";
 import { Link } from 'react-router-dom';
 /* Css */
 import '../css/Login.css'
+/* Contex */
+import { UContex } from '../Contex/Contex'
 
 const Login = props => {
     const Token = useSelector(state => state.Token);
+    const contex = useContext(UContex)
 
     useEffect(() => {
         if (store.getState().Token) {
@@ -23,6 +26,12 @@ const Login = props => {
             saveState({
                 Token: store.getState().Token
             })
+            /* Contex deneysel bölüm */
+            const token = JSON.parse(localStorage.getItem("Token"))
+            const user = JSON.parse(localStorage.getItem("User"))
+            contex.User = user["User"]
+            contex.Token = token["Token"]
+            /* --------------------- */
             history.push("/contact")
         }
     }, [Token])
