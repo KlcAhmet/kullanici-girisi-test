@@ -3,13 +3,14 @@ import { createContext } from "react"
 export const UserContex = {
     User: {},
     ContactList: {},
-    Token: null
+    Token: null,
+    setUserContex: () => { }
 }
 
 export const UContex = createContext(UserContex)
 
-const Contex = () => {
-    return UserContex
+function Contex() {
+
 }
 
 
