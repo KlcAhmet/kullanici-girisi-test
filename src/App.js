@@ -1,6 +1,7 @@
 import {
   Router, Switch, Route
 } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 /* Components */
 import { Home, Login, Navigation, ProtectedRoute, Register, ForgotPassword, Message } from "./component map/ComponentMap"
 /* utils */
@@ -13,11 +14,23 @@ import "toastr/build/toastr.min.css"
 import "normalize.css"
 import "@blueprintjs/core/lib/css/blueprint.css"
 import "@blueprintjs/icons/lib/css/blueprint-icons.css"
-import { useEffect } from "react";
 
 
 function App() {
-  useEffect(() => { Message() })
+  const contex = useContext(UContex)
+  const contexState = useState(contex)
+  useEffect(() => {
+    Message()
+    /* contex[UserContex] = loadState(UserContex) */
+    Object.keys(UserContex).forEach(e => {
+      try {
+        const aa = JSON.parse(localStorage.getItem(e))
+        contex[e] = aa[e]
+      } catch (error) {
+
+      }
+    })
+  }, [contexState])
 
   return (
     <div className="App">
